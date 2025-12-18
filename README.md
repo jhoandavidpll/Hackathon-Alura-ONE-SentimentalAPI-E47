@@ -3,9 +3,12 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimeintos
 
 # Estructura del Proyecto 
 
+# Estructura del Proyecto
+
+```text
 REPO-ROOT/
 │
-├── Backend/                 # (Squad Java Spring Boot)
+├── Backend-Main/            # (Squad Java Spring Boot)
 │   ├── src/                 # Código fuente Java
 │   ├── pom.xml              # Dependencias Maven
 │   └── Dockerfile           # Expone puerto 8080
@@ -31,6 +34,6 @@ REPO-ROOT/
 │   ├── dataset/             # CSVs crudos (Raw data)
 │   └── training/            # Scripts limpios (.py) que generan los modelos
 │
-├── docker-compose.yml       # El "Director de Orquesta" 
+├── docker-compose.yml       # El "Director de Orquesta"
 ├── .gitignore               # Ignora __pycache__, .class, .ipynb_checkpoints
 └── README.md                # Documentación general

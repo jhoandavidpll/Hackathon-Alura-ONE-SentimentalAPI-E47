@@ -1,4 +1,14 @@
 import streamlit as st
+from menu import generar_menu # Importamos nuestra función
+
+st.set_page_config(page_title="Inicio", layout="wide")
+
+# Llamamos al menú antes de cualquier otra cosa
+generar_menu()
+
+st.title("Bienvenido a la página de Inicio")
+# ... resto de tu código
+
 
 st.write("# Inicio")
 

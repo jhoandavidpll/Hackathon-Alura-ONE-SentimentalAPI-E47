@@ -1,3 +1,14 @@
 import streamlit as st
+# Nota: Como 'pages' es una subcarpeta, necesitamos importar desde la raíz.
+# A veces Python en Streamlit encuentra la raíz directamente:
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from menu import generar_menu
 
-st.write("# Histórico")
+st.set_page_config(page_title="Histórico", layout="wide")
+
+generar_menu()
+
+st.title("Datos Históricos")
+# ... resto de tu código

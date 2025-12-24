@@ -18,8 +18,8 @@ if 'history' not in st.session_state:
 
 # --- COLORES Y ESTILOS (CSS) ---
 COLOR_PRIMARY = "#D12E2E" 
-COLOR_BG = "#F0F2F6"
-COLOR_TEXT = "#333333"
+COLOR_BG = "#262F37"
+COLOR_TEXT = "#FFFFFF"
 
 st.markdown(f"""
     <style>

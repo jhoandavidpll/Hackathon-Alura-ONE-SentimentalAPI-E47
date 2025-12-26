@@ -12,3 +12,13 @@ generar_menu()
 
 st.title("Datos Históricos")
 # ... resto de tu código
+
+st.write("# Histórico")
+
+# importar datos
+import pandas as pd
+import numpy as np
+
+data = pd.read_csv("/home/jhoan/Documentos/portfolio/Hackathon-Alura-ONE-SentimentalAPI-E47/Data-Science/data/spanish/train.csv")
+
+st.write(data)

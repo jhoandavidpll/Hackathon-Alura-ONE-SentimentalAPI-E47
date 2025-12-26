@@ -12,3 +12,17 @@ generar_menu()
 
 st.title("Documentación")
 # ... resto de tu código
+
+st.write("## Este un título H2")
+
+# importar datos
+import pandas as pd
+import numpy as np
+
+chart_data = pd.DataFrame(
+    np.random.randn(20, 3),
+    columns = ["a", "b", "c"]
+)
+
+st.bar_chart(chart_data)
+st.line_chart(chart_data)

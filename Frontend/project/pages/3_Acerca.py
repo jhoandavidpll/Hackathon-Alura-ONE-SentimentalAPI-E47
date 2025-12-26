@@ -12,5 +12,3 @@ generar_menu()
 
 st.title("Acerca de")
 # ... resto de tu código
-
-st.write("# Acerca de")

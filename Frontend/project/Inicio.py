@@ -42,9 +42,6 @@ salida = detectar_idioma(seleccionar_idioma, texto_ingresado)
 
 st.write(f"El idioma detectado es: {salida}")
 
-
-
-
 st.write(f"Texto ingresado: {texto_ingresado}")
 
 boton = st.button("Clic aquí")

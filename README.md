@@ -1,14 +1,12 @@
 # Hackathon-Alura-ONE-SentimentalAPI-E47
-Proyecto de Data Science y Backend sobre una API de Análisis de Sentimeintos
-
-# Estructura del Proyecto 
+Proyecto de Data Science y Backend sobre una API de Análisis de Sentimeintos 
 
 # Estructura del Proyecto
 
 ```text
 REPO-ROOT/
 │
-├── Backend-Main/            # (Squad Java Spring Boot)
+├── Backend/                 # (Squad Java Spring Boot)
 │   ├── src/                 # Código fuente Java
 │   ├── pom.xml              # Dependencias Maven
 │   └── Dockerfile           # Expone puerto 8080
@@ -21,7 +19,7 @@ REPO-ROOT/
 │   │   ├── model_es.joblib  # (Generado por Squad Data Science)
 │   │   └── model_pt.joblib  # (Generado por Squad Data Science)
 │   ├── Dockerfile           # Expone puerto 5000 (interno)
-│   └── requirements.txt     # fastapi, uvicorn, scikit-learn, joblib
+│   └── requirements.txt     # scikit-learn, joblib
 │
 ├── Frontend/                # (Squad Presentación - Streamlit)
 │   ├── app.py               # Interfaz gráfica (Python)
@@ -30,8 +28,8 @@ REPO-ROOT/
 │   └── requirements.txt     # streamlit, requests
 │
 ├── Data-Science/            # (Squad Entrenamiento & Exploración)
-│   ├── notebooks/           # Jupyter Notebooks (Zona de pruebas)
-│   ├── dataset/             # CSVs crudos (Raw data)
+│   ├── Notebooks/           # Jupyter Notebooks (Zona de pruebas)
+│   ├── data/                # CSVs crudos (Raw data)
 │   └── training/            # Scripts limpios (.py) que generan los modelos
 │
 ├── docker-compose.yml       # El "Director de Orquesta"

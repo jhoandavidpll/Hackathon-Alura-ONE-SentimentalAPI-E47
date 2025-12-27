@@ -1,5 +1,13 @@
 # Hackathon-Alura-ONE-SentimentalAPI-E47
 Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos 
+
+## Organizadores
+<p>
+  <img src="https://nocountry.tech/one.png" width="20%" />
+  <img src="https://nocountry.tech/images/alura-latam-logo.1750260032.png" width="20%" />
+  <img src="https://nocountry.tech/images/oracle-logo.webp" width="20%" />
+</p>
+
 # Startup SentimentalAPI
 # Integrantes del Proyecto
 - Jhoan David Pillapa Llerena

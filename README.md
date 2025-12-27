@@ -1,5 +1,16 @@
 # Hackathon-Alura-ONE-SentimentalAPI-E47
-Proyecto de Data Science y Backend sobre una API de Análisis de Sentimeintos 
+Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos 
+# Startup SentimentalAPI
+# Integrantes del Proyecto
+- Jhoan David Pillapa Llerena
+- Mitchel David Poblete Santibañez
+- Andres Felipe Cubillos Hurtado
+- Brandon Omar Ortiz Gutierrez  
+- David Avila  
+- Nydia Olmos  
+- Andrés Huerta Salgado  
+- Cristian Armando Larios Bravo
+
 
 # Estructura del Proyecto
 
@@ -35,3 +46,15 @@ REPO-ROOT/
 ├── docker-compose.yml       # El "Director de Orquesta"
 ├── .gitignore               # Ignora __pycache__, .class, .ipynb_checkpoints
 └── README.md                # Documentación general
+```
+
+# Herramientas y versiones
+- Java 21.0.8
+- Python 3.13.9
+- Docker 29.1.3
+
+# Requerimientos
+- streamlit
+- pandas
+- scikit-learn
+- textblob

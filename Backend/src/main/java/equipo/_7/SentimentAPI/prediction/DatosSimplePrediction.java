@@ -1,4 +1,4 @@
 package equipo._7.SentimentAPI.prediction;
 
-public record DatosSimplePrediction() {
+public record DatosSimplePrediction(String text) {
 }

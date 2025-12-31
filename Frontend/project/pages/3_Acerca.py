@@ -73,32 +73,61 @@ st.markdown("""
         - Cristian Armando Larios Bravo (Backend Developer)
     """)#Por agregar (linkedin, github, correos, fotos)
 
-st.html("""
-<div style="display: flex; align-items: center; background-color: #0e1117; padding: 20px; border-radius: 10px; border: 1px solid #31333f; font-family: sans-serif;">
-  <img src="https://avatars.githubusercontent.com/u/66537133?s=400&u=82d981fa4f723616d5809b2fc3f84999b8d29fbe&v=4" 
-       alt="Jhoan David Pillapa Llerena" 
-       style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-right: 20px; border: 2px solid #31333f;">
-  
-  <div>
-    <h3 style="margin: 0; color: white;">Jhoan David Pillapa Llerena</h3>
-    <h4 style="margin: 5px 0; color: #ff4b4b;">Data Engineer</h4>
-    <p style="margin: 0 0 10px 0; color: #fafafa; font-size: 0.9rem;">
-      Experto en transformar grandes volúmenes de datos en insights accionables para acelerar el crecimiento del negocio. Especialista en automatización de reportes (Power BI/Python).
-    </p>
-    
-    <!-- Contenedor de Redes Sociales -->
-    <div style="display: flex; gap: 12px; align-items: center;">
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/jhoandavidpll/" target="_blank" style="text-decoration: none;">
-        <img alt="Jhoan Pillapa | Linkedin" width="28px" src="https://raw.githubusercontent.com/jhoandavidpll/jhoandavidpll/ef3b53d05731828b91f73ee7ef1fcedab18bd89b/img/linkedin-svgrepo-com.svg" style="display: block;">
-      </a>
-      <a href="https://github.com/jhoandavidpll" target="_blank" style="text-decoration: none;">
-        <img alt="Jhoan Pillapa | Github" width="28px" src="https://raw.githubusercontent.com/jhoandavidpll/jhoandavidpll/ef3b53d05731828b91f73ee7ef1fcedab18bd89b/img/github-color-svgrepo-com.svg" style="display: block;">
-      </a>
-    </div>
-  </div>
-</div>
-""")
+def mostrar_tarjetas_equipo(lista_perfiles):
+    """
+    Renderiza múltiples tarjetas de perfil a partir de una lista de diccionarios.
+    """
+    for perfil in lista_perfiles:
+        html_code = f"""
+        <div style="display: flex; align-items: center; background-color: #0e1117; padding: 20px; border-radius: 10px; border: 1px solid #31333f; font-family: sans-serif; margin-bottom: 15px;">
+          <img src="{perfil.get('foto')}" 
+               alt="{perfil.get('nombre')}" 
+               style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px; border: 2px solid #31333f;">
+          
+          <div>
+            <h3 style="margin: 0; color: white; font-size: 1.2rem;">{perfil.get('nombre')}</h3>
+            <h4 style="margin: 5px 0; color: #ff4b4b; font-size: 1rem;">{perfil.get('cargo')}</h4>
+            <p style="margin: 0 0 10px 0; color: #fafafa; font-size: 0.85rem; line-height: 1.4;">
+              {perfil.get('descripcion')}
+            </p>
+            
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <a href="{perfil.get('linkedin')}" target="_blank" style="text-decoration: none;">
+                <img alt="Linkedin" width="24px" src="https://raw.githubusercontent.com/jhoandavidpll/jhoandavidpll/ef3b53d05731828b91f73ee7ef1fcedab18bd89b/img/linkedin-svgrepo-com.svg">
+              </a>
+              <a href="{perfil.get('github')}" target="_blank" style="text-decoration: none;">
+                <img alt="Github" width="24px" src="https://raw.githubusercontent.com/jhoandavidpll/jhoandavidpll/ef3b53d05731828b91f73ee7ef1fcedab18bd89b/img/github-color-svgrepo-com.svg">
+              </a>
+            </div>
+          </div>
+        </div>
+        """
+        st.html(html_code)
+
+# --- CONFIGURACIÓN DE TUS DATOS ---
+
+equipo = [
+    {
+        "nombre": "Jhoan David Pillapa Llerena",
+        "cargo": "Data Engineer",
+        "descripcion": "Especialista en automatización de reportes y transformación de datos (Python/Power BI).",
+        "linkedin": "https://www.linkedin.com/in/jhoandavidpll/",
+        "github": "https://github.com/jhoandavidpll",
+        "foto": "https://avatars.githubusercontent.com/u/66537133?s=400&u=82d981fa4f723616d5809b2fc3f84999b8d29fbe&v=4"
+    },
+    {
+        "nombre": "Nombre de Colega",
+        "cargo": "Data Scientist",
+        "descripcion": "Experta en modelos predictivos y machine learning aplicado a finanzas.",
+        "linkedin": "www.linkedin.com",
+        "github": "github.com",
+        "foto": "via.placeholder.com" # URL de la imagen
+    }
+]
+
+# Ejecución en Streamlit
+st.title("Nuestro Equipo")
+mostrar_tarjetas_equipo(equipo)
 
     #Herramientas
 st.subheader("Stack Tecnologico")

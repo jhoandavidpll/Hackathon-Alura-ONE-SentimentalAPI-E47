@@ -122,6 +122,14 @@ equipo = [
         "linkedin": "www.linkedin.com",
         "github": "github.com",
         "foto": "via.placeholder.com" # URL de la imagen
+    },
+    {
+        "nombre": "Nombre de Colega",
+        "cargo": "Data Scientist",
+        "descripcion": "Experta en modelos predictivos y machine learning aplicado a finanzas.",
+        "linkedin": "www.linkedin.com",
+        "github": "github.com",
+        "foto": "via.placeholder.com" # URL de la imagen
     }
 ]
 

@@ -73,6 +73,33 @@ st.markdown("""
         - Cristian Armando Larios Bravo (Backend Developer)
     """)#Por agregar (linkedin, github, correos, fotos)
 
+st.html("""
+<div style="display: flex; align-items: center; background-color: #0e1117; padding: 20px; border-radius: 10px; border: 1px solid #31333f; font-family: sans-serif;">
+  <img src="https://avatars.githubusercontent.com/u/66537133?s=400&u=82d981fa4f723616d5809b2fc3f84999b8d29fbe&v=4" 
+       alt="Jhoan David Pillapa Llerena" 
+       style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-right: 20px; border: 2px solid #31333f;">
+  
+  <div>
+    <h3 style="margin: 0; color: white;">Jhoan David Pillapa Llerena</h3>
+    <h4 style="margin: 5px 0; color: #ff4b4b;">Data Engineer</h4>
+    <p style="margin: 0 0 10px 0; color: #fafafa; font-size: 0.9rem;">
+      Experto en transformar grandes volúmenes de datos en insights accionables para acelerar el crecimiento del negocio. Especialista en automatización de reportes (Power BI/Python).
+    </p>
+    
+    <!-- Contenedor de Redes Sociales -->
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/jhoandavidpll/" target="_blank" style="text-decoration: none;">
+        <img alt="Jhoan Pillapa | Linkedin" width="28px" src="https://raw.githubusercontent.com/jhoandavidpll/jhoandavidpll/ef3b53d05731828b91f73ee7ef1fcedab18bd89b/img/linkedin-svgrepo-com.svg" style="display: block;">
+      </a>
+      <a href="https://github.com/jhoandavidpll" target="_blank" style="text-decoration: none;">
+        <img alt="Jhoan Pillapa | Github" width="28px" src="https://raw.githubusercontent.com/jhoandavidpll/jhoandavidpll/ef3b53d05731828b91f73ee7ef1fcedab18bd89b/img/github-color-svgrepo-com.svg" style="display: block;">
+      </a>
+    </div>
+  </div>
+</div>
+""")
+
     #Herramientas
 st.subheader("Stack Tecnologico")
 st.markdown("""

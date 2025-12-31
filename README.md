@@ -1,14 +1,31 @@
 # Hackathon-Alura-ONE-SentimentalAPI-E47
-Proyecto de Data Science y Backend sobre una API de Análisis de Sentimeintos
+Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos 
 
-# Estructura del Proyecto 
+## Organizadores
+<p>
+  <img src="https://nocountry.tech/one.png" width="20%" />
+  <img src="https://nocountry.tech/success-cases/hackathon-one/logos/alura-logo.png" width="20%" />
+  <img src="https://nocountry.tech/images/oracle-logo.webp" width="20%" />
+</p>
+
+# Startup SentimentalAPI
+# Integrantes del Proyecto
+- Jhoan David Pillapa Llerena
+- Mitchel David Poblete Santibañez
+- Andres Felipe Cubillos Hurtado
+- Brandon Omar Ortiz Gutierrez  
+- David Avila  
+- Nydia Olmos  
+- Andrés Huerta Salgado  
+- Cristian Armando Larios Bravo
+
 
 # Estructura del Proyecto
 
 ```text
 REPO-ROOT/
 │
-├── Backend-Main/            # (Squad Java Spring Boot)
+├── Backend/                 # (Squad Java Spring Boot)
 │   ├── src/                 # Código fuente Java
 │   ├── pom.xml              # Dependencias Maven
 │   └── Dockerfile           # Expone puerto 8080
@@ -21,7 +38,7 @@ REPO-ROOT/
 │   │   ├── model_es.joblib  # (Generado por Squad Data Science)
 │   │   └── model_pt.joblib  # (Generado por Squad Data Science)
 │   ├── Dockerfile           # Expone puerto 5000 (interno)
-│   └── requirements.txt     # fastapi, uvicorn, scikit-learn, joblib
+│   └── requirements.txt     # scikit-learn, joblib
 │
 ├── Frontend/                # (Squad Presentación - Streamlit)
 │   ├── app.py               # Interfaz gráfica (Python)
@@ -30,10 +47,22 @@ REPO-ROOT/
 │   └── requirements.txt     # streamlit, requests
 │
 ├── Data-Science/            # (Squad Entrenamiento & Exploración)
-│   ├── notebooks/           # Jupyter Notebooks (Zona de pruebas)
-│   ├── dataset/             # CSVs crudos (Raw data)
+│   ├── Notebooks/           # Jupyter Notebooks (Zona de pruebas)
+│   ├── data/                # CSVs crudos (Raw data)
 │   └── training/            # Scripts limpios (.py) que generan los modelos
 │
 ├── docker-compose.yml       # El "Director de Orquesta"
 ├── .gitignore               # Ignora __pycache__, .class, .ipynb_checkpoints
 └── README.md                # Documentación general
+```
+
+# Herramientas y versiones
+- Java 21.0.8
+- Python 3.13.9
+- Docker 29.1.3
+
+# Requerimientos
+- streamlit
+- pandas
+- scikit-learn
+- textblob

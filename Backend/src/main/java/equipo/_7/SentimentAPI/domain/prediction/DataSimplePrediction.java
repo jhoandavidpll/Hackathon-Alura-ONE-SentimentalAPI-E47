@@ -1,4 +1,4 @@
-package equipo._7.SentimentAPI.prediction;
+package equipo._7.SentimentAPI.domain.prediction;
 
 import jakarta.validation.constraints.NotBlank;
 

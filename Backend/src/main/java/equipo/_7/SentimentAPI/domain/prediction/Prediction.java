@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.stringtemplate.v4.ST;
 
 import java.time.LocalDateTime;
 
@@ -26,7 +25,7 @@ public class Prediction {
     private String topFeatures;
     private LocalDateTime fecha;
 
-    public Prediction(DatosSimplePrediction json) {
+    public Prediction(DataSimplePrediction json) {
         this.id = null;
         this.prevision = "Positivo";
         this.probabilidad = 0f;

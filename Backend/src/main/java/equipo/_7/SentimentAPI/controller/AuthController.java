@@ -1,22 +1,20 @@
 package equipo._7.SentimentAPI.controller;
 
-import equipo._7.SentimentAPI.domain.user.DataAuth;
-import equipo._7.SentimentAPI.domain.user.DataRegister;
-import equipo._7.SentimentAPI.domain.user.User;
-import equipo._7.SentimentAPI.domain.user.UserRepository;
+import equipo._7.SentimentAPI.domain.user.*;
 import equipo._7.SentimentAPI.infra.security.DataTokenJWT;
 import equipo._7.SentimentAPI.infra.security.TokenService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -52,6 +50,11 @@ public class AuthController {
         var auth = manager.authenticate(authToken);
         var tokenJwt = tokenService.generateToken((User) auth.getPrincipal());
         return new DataTokenJWT(tokenJwt);
+    }
+
+    @GetMapping("/users")
+    public List<DataUsers> users (@PageableDefault(size = 10) Pageable pageable) {
+        Page<DataUsers> page = userRepository.findAll().stream().map();
     }
 
     private String encodePassword(String password) {

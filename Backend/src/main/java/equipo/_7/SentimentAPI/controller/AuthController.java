@@ -44,7 +44,7 @@ public class AuthController {
         if (!Objects.equals(data.password(), data.passwordConfirmation())) {
             throw new RuntimeException("Passwords do not match");
         }
-        var user = new User(data.email(), encodePassword(data.password()));
+        var user = new User(data.email(), data.name(), encodePassword(data.password()));
         userRepository.save(user);
         var authToken = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = manager.authenticate(authToken);
@@ -52,9 +52,42 @@ public class AuthController {
         return new DataTokenJWT(tokenJwt);
     }
 
-    @GetMapping("/users")
-    public List<DataUsers> users (@PageableDefault(size = 10) Pageable pageable) {
-        Page<DataUsers> page = userRepository.findAll().stream().map();
+    @GetMapping("/user/{id}")
+    public DataUser getUser(@PathVariable Long id) {
+        var user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+        return new DataUser(user.get());
+    }
+
+    @GetMapping("/user")
+    public Page<DataUser> getUsers(@PageableDefault(size = 10, sort = {"name"}) Pageable pageable) {
+        return userRepository.findAll(pageable).map(DataUser::new);
+    }
+
+    @Transactional
+    @DeleteMapping("/user/{id}")
+    public void delete(@PathVariable Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Transactional
+    @PutMapping("/user/{id}")
+    public DataUser updateUser(@PathVariable Long id, @RequestBody @Valid DataUpdateUser data) {
+        var user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+        if (data.name() != null) {
+            user.get().setName(data.name());
+        }
+        if (data.password() != null && Objects.equals(data.passwordConfirmation(), data.password())) {
+            user.get().setPassword(passwordEncoder.encode(data.password()));
+        } else {
+            throw new RuntimeException("Passwords do not match, it requires a confirm password");
+        }
+        return new DataUser(user.get());
     }
 
     private String encodePassword(String password) {

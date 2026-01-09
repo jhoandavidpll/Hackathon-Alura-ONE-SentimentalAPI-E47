@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,11 +23,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
+    @Setter
+    @Column(unique = true, name = "nombre")
+    private String name;
+    @Setter
     @Column(name = "contrasena")
     private String password;
 
-    public User(@NotBlank @Email String email, @NotBlank String password) {
+    public User(@NotBlank @Email String email, @NotBlank String name, @NotBlank String password) {
         this.email = email;
+        this.name = name;
         this.password = password;
     }
 

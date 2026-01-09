@@ -1,0 +1,1 @@
+ALTER TABLE usuarios ADD nombre VARCHAR(100) UNIQUE;

@@ -21,9 +21,10 @@ public class PredictionController {
 
     @Transactional
     @PostMapping
-    public void simplePrediction(@RequestBody @Valid DataSimplePrediction json) {
-        repository.save(new Prediction(json));
-        System.out.println(json);
+    public DataPredictions simplePrediction(@RequestBody @Valid DataSimplePrediction json) {
+        var prediction = new Prediction(json);
+        repository.save(prediction);
+        return new DataPredictions(prediction);
     }
 
     @GetMapping
@@ -39,6 +40,10 @@ public class PredictionController {
 
     @GetMapping("/{id}")
     public DataPredictions singlePrediction(@PathVariable Long id) {
-        return new DataPredictions(repository.getReferenceById(id));
+        var prediction =  repository.findById(id);
+        if (prediction.isEmpty()) {
+            throw new RuntimeException("Prediction not found");
+        }
+        return new DataPredictions(prediction.get());
     }
 }

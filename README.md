@@ -61,10 +61,11 @@ REPO-ROOT/
 - Python 3.13.9
 - Docker 29.1.3
 
-![Java](https://img.shields.io/badge/java-21.0.8-white)
-![Python](https://img.shields.io/badge/python-3.13.9-blue)
-![Docker](https://img.shields.io/badge/docker-29.1.3-0db7ed)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17.5-gray)
+[![Java](https://img.shields.io/badge/java-21.0.8-white?logo=java)]
+[![Python](https://img.shields.io/badge/python-3.13.9-blue?logo=python)]
+[![Docker](https://img.shields.io/badge/docker-29.1.3-0db7ed?logo=docker)]
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17.5-gray?logo=postgresql)]
+[![Colab](https://img.shields.io/badge/Colab-gray?logo=googlecolab)]
 
 # Requerimientos
 - streamlit

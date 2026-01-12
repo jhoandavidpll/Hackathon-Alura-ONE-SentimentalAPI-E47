@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,13 +20,16 @@ public class PredictionController {
     @Autowired
     private PredictionRepository repository;
 
-    @Transactional
-    @PostMapping
-    public DataPredictions simplePrediction(@RequestBody @Valid DataSimplePrediction json) {
-        var prediction = new Prediction(json);
-        repository.save(prediction);
-        return new DataPredictions(prediction);
-    }
+   @Transactional
+@PostMapping
+public ResponseEntity simplePrediction(@RequestBody @Valid DataSimplePrediction json) {
+
+    Prediction prediction = new Prediction(json);
+
+    repository.save(prediction);
+
+    return ResponseEntity.ok(new DataPredictions(prediction));
+}
 
     @GetMapping
     public Page<DataPredictions> predictions(@PageableDefault(size=10, sort={"prevision"}) Pageable pageable) {

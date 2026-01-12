@@ -44,6 +44,10 @@ public ResponseEntity simplePrediction(@RequestBody @Valid DataSimplePrediction 
 
     @GetMapping("/{id}")
     public DataPredictions singlePrediction(@PathVariable Long id) {
-        return new DataPredictions(repository.getReferenceById(id));
+        var prediction =  repository.findById(id);
+        if (prediction.isEmpty()) {
+            throw new RuntimeException("Prediction not found");
+        }
+        return new DataPredictions(prediction.get());
     }
 }

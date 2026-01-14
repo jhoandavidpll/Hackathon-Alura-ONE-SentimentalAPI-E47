@@ -28,9 +28,9 @@ def generar_menu():
             top: 0;
             left: 0;
             width: 100%;
-            background: black;
+            background: #005461;
             z-index: 1000;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 0px solid #ddd;
         }
 
         .fixed-header h1 {

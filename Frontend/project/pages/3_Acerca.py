@@ -5,10 +5,14 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from menu import generar_menu
+from funciones import *
 
 st.set_page_config(page_title="Acerca", layout="wide")
 
 generar_menu()
+# --- ESTILOS CSS PERSONALIZADOS ---
+estilo()
+
 #Generando contenedores
 titulo = st.container()
 descripcion = st.container()

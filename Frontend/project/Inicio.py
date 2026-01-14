@@ -7,7 +7,8 @@ from langdetect import detect, DetectorFactory
 # Esto hace que el resultado sea siempre el mismo para el mismo texto
 DetectorFactory.seed = 0
 
-st.set_page_config(page_title="Inicio", layout="wide")
+# --- CONFIGURACIÓN DE PÁGINA ---
+st.set_page_config(page_title="Analizador de Sentimiento", layout="centered")
 
 # Llamamos al menú antes de cualquier otra cosa
 generar_menu()
@@ -43,11 +44,6 @@ st.write(f"Texto ingresado: {texto_ingresado}")
 
 boton = st.button("Clic aquí")
 
-
-import streamlit as st
-
-# --- CONFIGURACIÓN DE PÁGINA ---
-st.set_page_config(page_title="Analizador de Sentimiento", layout="centered")
 
 # --- ESTILOS CSS PERSONALIZADOS ---
 from funciones import *

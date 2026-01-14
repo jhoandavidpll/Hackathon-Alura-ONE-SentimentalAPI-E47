@@ -28,7 +28,7 @@ def generar_menu():
             top: 0;
             left: 0;
             width: 100%;
-            background: white;
+            background: black;
             z-index: 1000;
             border-bottom: 1px solid #ddd;
         }
@@ -66,10 +66,11 @@ def generar_menu():
         <div class='header1'>
             <h1>🏅SentimentAPI</h1>
             <ul class='header2'>
-                <li><a href='/' target='_self'>Inicio</a></li>
-                <li><a href='/Histórico' target='_self'>Histórico</a></li>
-                <li><a href='/Documentación' target='_self'>Documentación</a></li>
-                <li><a href='/Acerca' target='_self'>Acerca</a></li>
+                <li><a href='/' target='_self'>🏅 Inicio</a></li>
+                <li><a href='/Histórico' target='_self'>📋 Histórico</a></li>
+                <li><a href='/Documentación' target='_self'>🗂️ Documentación</a></li>
+                <li><a href='/Acerca' target='_self'>🫆 Acerca</a></li>
+                <li><a href='/Batching' target='_self'>🧠 Batching</a></li>
             </ul>
         </div>
     <div/>

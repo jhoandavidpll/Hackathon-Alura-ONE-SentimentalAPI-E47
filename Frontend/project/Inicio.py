@@ -10,14 +10,10 @@ st.set_page_config(page_title="Inicio", layout="wide")
 
 # Llamamos al menú antes de cualquier otra cosa
 generar_menu()
-
-st.title("Bienvenido a ..")
 # ... resto de tu código
 
 
-st.write("# Inicio")
-
-st.write("SentimentAPI")
+st.write("# SentimentAPI")
 
 seleccionar_idioma = st.radio("Seleccione el Idioma para la reseña", ["Español", "Portugues", "Automático"])
 

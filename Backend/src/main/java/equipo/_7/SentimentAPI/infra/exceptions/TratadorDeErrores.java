@@ -1,4 +1,4 @@
-package equipo._7.SentimentAPI.infra.security.exceptions;
+package equipo._7.SentimentAPI.infra.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-
-import java.util.List;
 
 @RestControllerAdvice
 public class TratadorDeErrores {
@@ -50,10 +48,10 @@ public class TratadorDeErrores {
     }
 
     // 4. Error 401: Login fallido (contraseña o usuario incorrecto)
-    @ExceptionHandler(org.springframework.security.authentication.BadCredentialsException.class)
-    public ResponseEntity tratarErrorLogin() {
-        return ResponseEntity.status(401).body("Error: Credenciales inválidas. Verifica tu correo y contraseña.");
-    }
+//    @ExceptionHandler(org.springframework.security.authentication.BadCredentialsException.class)
+//    public ResponseEntity tratarErrorLogin() {
+//        return ResponseEntity.status(401).body("Error: Credenciales inválidas. Verifica tu correo y contraseña.");
+//    }
 
     // 5. Error 500: Errores inesperados del servidor
     @ExceptionHandler(Exception.class)

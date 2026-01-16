@@ -28,7 +28,7 @@ def generar_menu():
             top: 0;
             left: 0;
             width: 100%;
-            background: #005461;
+            background: #0F172A;
             z-index: 1000;
             border-bottom: 0px solid #ddd;
         }

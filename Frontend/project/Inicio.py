@@ -60,7 +60,7 @@ comentario = st.text_area("Segundo, ingresa el comentario:",
                           height=150)
 
 with st.expander("⚙️ Opciones "):
-    st.checkbox("")
+    st.checkbox("Inicio")
     st.checkbox("Detectar idioma")
 
 if st.button("ENVIAR COMENTARIO"):

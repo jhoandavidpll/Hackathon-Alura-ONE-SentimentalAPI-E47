@@ -17,8 +17,21 @@ generar_menu()
 
 st.write("# SentimentAPI")
 
-seleccionar_idioma = st.radio("Seleccione el Idioma para la reseña", ["Español", "Portugues", "Automático"])
+seleccionar_idioma = st.selectbox("Seleccione el Idioma para la reseña", ["Español", "Portugues", "Automático"])
 
+# Aplicamos el estilo de forma muy agresiva
+st.markdown("""
+    <style>
+    input {
+        background-color: white !important;
+        color: #000000 !important;
+    }
+    /* Quitar el color gris cuando el input está enfocado */
+    div[data-baseweb="input"]:focus-within {
+        background-color: white !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 texto_ingresado = st.text_input("Ingrese texto")
 

@@ -1,51 +1,77 @@
 import streamlit as st
 
 def generar_menu():
-    # 1. Definimos el estilo CSS para que parezca una barra de navegación
-    # Esto pone el fondo gris claro y ajusta padding
-    # CSS PARA ELIMINAR LA BARRA NATIVA Y EL ESPACIO VACÍO
-    estilo_limpieza = """
+### Contenido para el header
+    header = st.container()
+    header.write("""
     <style>
-        /* 1. Ocultar la barra superior (Header) donde está el botón Deploy */
+    /*Mantener header fijo*/
+    /* 1. Ocultar la barra superior (Header) donde está el botón Deploy */
         [data-testid="stHeader"] {
-            visibility: hidden;
-            height: 0px; /* Forzamos a que no ocupe altura */
+            display: none;
         }
 
-        /* 2. Subir el contenido principal para eliminar el espacio vacío de arriba */
-        /* Streamlit añade mucho padding por defecto, aquí lo reducimos a 0 o 1rem */
+        [data-testid="stMarkdownContainer"] {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+    /* 2. Subir el contenido principal para eliminar el espacio vacío de arriba */
+    /* Streamlit añade mucho padding por defecto, aquí lo reducimos a 0 o 1rem */
         .block-container {
-            padding-top: 0rem; 
+            padding-top: 5.5rem; 
             padding-bottom: 0rem;
         }
-        
-        /* Opcional: Si quieres ocultar el footer "Made with Streamlit" */
-        footer {visibility: hidden;}
+
+        div[data-testid="stVerticalBlock"] div:has(div.fixed-header) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #005461;
+            z-index: 1000;
+            border-bottom: 0px solid #ddd;
+        }
+
+        .fixed-header h1 {
+            margin: 0;
+        }
+
+        .header1{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .header2{
+            display: flex;
+            flex: 2;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            margin: 0;
+        }
+        .header2 li{
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+    /*Borrar formato de hipervinculo*/
+        a {
+            text-decoration: none !important; /* Quita el subrayado */
+            color: inherit !important;       /* Mantiene el color del texto circundante */
+        }
     </style>
-    """
-    st.markdown(estilo_limpieza, unsafe_allow_html=True)
 
-    # 2. Creamos columnas: Una pequeña para el logo/título y otra para los enlaces
-    with st.container():
-        # Ajusta las proporciones: col1 (logo) pequeña, col2 (espacio), col3 (menú)
-        col1, col2 = st.columns([1, 3]) 
-        
-        with col1:
-            # Puedes usar st.image("tu_logo.png", width=150) aquí
-            st.markdown("### 🏅Startup") # Simulación de tu logo
-
-        with col2:
-            # Usamos una columna dentro de la columna para alinear a la derecha o centro
-            # Streamlit pone los botones verticales por defecto, así que usamos cols internas
-            m1, m2, m3, m4 = st.columns(4)
-            
-            with m1:
-                st.page_link("Inicio.py", label="Inicio", icon="🏠")
-            with m2:
-                st.page_link("pages/1_Histórico.py", label="Histórico", icon="📈")
-            with m3:
-                st.page_link("pages/2_Documentación.py", label="Documentación", icon="📚")
-            with m4:
-                st.page_link("pages/3_Acerca.py", label="Acerca", icon="ℹ️")
-        
-        st.write("---") # Una línea separadora opcional
+    <div class='fixed-header'>
+        <div class='header1'>
+            <h1>🏅SentimentAPI</h1>
+            <ul class='header2'>
+                <li><a href='/' target='_self'>🏅 Inicio</a></li>
+                <li><a href='/Histórico' target='_self'>📋 Histórico</a></li>
+                <li><a href='/Documentación' target='_self'>🗂️ Documentación</a></li>
+                <li><a href='/Acerca' target='_self'>🫆 Acerca</a></li>
+                <li><a href='/Batching' target='_self'>🧠 Batching</a></li>
+            </ul>
+        </div>
+    <div/>
+    """, unsafe_allow_html=True)

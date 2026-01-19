@@ -1,5 +1,6 @@
 package equipo._7.SentimentAPI.domain.prediction;
 
+import equipo._7.SentimentAPI.domain.model.OnnxService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -27,10 +28,23 @@ public class Prediction {
 
     public Prediction(DataSimplePrediction json) {
         this.id = null;
-        this.prevision = "Positivo";
+        this.prevision = "Pendiente";
         this.probabilidad = 0f;
         this.comentario = json.text();
         this.topFeatures = "['Hola', 'uwu']";
         this.fecha = LocalDateTime.now();
+    }
+
+    // Método para inyectar el resultado del modelo
+    public void asignarResultado(OnnxService.PredictionResult resultado){
+        this.probabilidad = resultado.probability;
+
+        // Mapeo directo: Número -> Texto
+        switch ((int) resultado.label){
+            case 0 -> this.prevision = "Negativo";
+            case 1 -> this.prevision = "Neutral";
+            case 2 -> this.prevision = "Positivo";
+            default -> this.prevision = "Desconocido";
+        }
     }
 }

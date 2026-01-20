@@ -37,10 +37,10 @@ public class Prediction {
 
     // Método para inyectar el resultado del modelo
     public void asignarResultado(OnnxService.PredictionResult resultado){
-        this.probabilidad = resultado.probability;
+        this.probabilidad = resultado.probability();
 
         // Mapeo directo: Número -> Texto
-        switch ((int) resultado.label){
+        switch ((int) resultado.label()){
             case 0 -> this.prevision = "Negativo";
             case 1 -> this.prevision = "Neutral";
             case 2 -> this.prevision = "Positivo";

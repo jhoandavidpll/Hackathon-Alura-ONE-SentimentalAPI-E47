@@ -1,6 +1,7 @@
 package equipo._7.SentimentAPI.controller;
 
 import ai.onnxruntime.OrtException;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import equipo._7.SentimentAPI.domain.model.OnnxService;
@@ -25,6 +26,9 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+
+import static equipo._7.SentimentAPI.domain.prediction.Language.ES;
+import static equipo._7.SentimentAPI.domain.prediction.Language.PT;
 
 @RestController
 @RequestMapping("/predict")
@@ -81,7 +85,10 @@ public class PredictionController {
     public ResponseEntity<List<DataPredictions>> csvPrediction(
             @RequestParam(value = "archivo")
             @NotNull(message = "Es necesario un archivo del tipo csv")
-            MultipartFile file) throws IOException {
+            MultipartFile file,
+            @RequestParam(value = "modelo")
+            @NotNull(message = "Es necesario especificar el idioma (ES, PT)")
+            Language model) throws IOException {
 
         if (file.isEmpty() || !file.getOriginalFilename().endsWith(".csv")) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -115,7 +122,7 @@ public class PredictionController {
                     String comentario = row[headerIndex];
 
                     // 1. Crear entidad y DTO de entrada
-                    DataSimplePrediction dataInput = new DataSimplePrediction(comentario);
+                    DataSimplePrediction dataInput = new DataSimplePrediction(comentario, ES);
                     Prediction prediction = new Prediction(dataInput);
 
                     // 2. Realizar inferencia con el modelo ONNX

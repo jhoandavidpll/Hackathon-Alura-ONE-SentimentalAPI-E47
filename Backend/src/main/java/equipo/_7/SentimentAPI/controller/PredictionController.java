@@ -12,11 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-<<<<<<< HEAD
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-=======
->>>>>>> 679119215f769e817ccbe588ab40aed74626e4c0
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +33,6 @@ public class PredictionController {
     @Autowired
     private PredictionRepository repository;
 
-<<<<<<< HEAD
     @Autowired
     private OnnxService onnxService;
 
@@ -61,18 +57,6 @@ public class PredictionController {
            }
 
     }
-=======
-   @Transactional
-@PostMapping
-public ResponseEntity simplePrediction(@RequestBody @Valid DataSimplePrediction json) {
-    
-    Prediction prediction = new Prediction(json);
-
-    repository.save(prediction);
-    
-    return ResponseEntity.ok(new DataPredictions(prediction));
-}
->>>>>>> 679119215f769e817ccbe588ab40aed74626e4c0
 
     @GetMapping
     public ResponseEntity<Page<DataPredictions>> predictions(@PageableDefault(size=10, sort={"prevision"}) Pageable pageable) {

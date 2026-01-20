@@ -5,7 +5,7 @@ import ai.onnxruntime.OrtEnvironment;
 import ai.onnxruntime.OrtException;
 import ai.onnxruntime.OrtSession;
 import org.springframework.stereotype.Service;
-import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct; // Importante para Spring
 import java.util.Collections;
 
 @Service
@@ -14,15 +14,7 @@ public class OnnxService {
     private OrtSession session;
 
     // Estructura para devolver a la entidad
-    public static class PredictionResult {
-        public final long label;
-        public final float probability;
-
-        public PredictionResult(long label, float probability) {
-            this.label = label;
-            this.probability = probability;
-        }
-    }
+    public record PredictionResult(long label, float probability) {}
 
     @PostConstruct
     public void init() throws Exception {

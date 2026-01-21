@@ -22,6 +22,7 @@ public class Prediction {
     private String prevision;
     private float probabilidad;
     private String comentario;
+    private Language language;
     private LocalDateTime fecha;
 
     public Prediction(DataSimplePrediction json) {
@@ -29,6 +30,7 @@ public class Prediction {
         this.prevision = "Pendiente";
         this.probabilidad = 0f;
         this.comentario = json.text();
+        this.language = json.model();
         this.fecha = LocalDateTime.now();
     }
 

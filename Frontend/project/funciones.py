@@ -6,7 +6,7 @@ def estilo():
         <style>
         /* Cambiar el fondo de la aplicación */
         .stApp {
-            background: linear-gradient(135deg, #018790 0%, #018790 100%);
+            background: linear-gradient(135deg, #1E293B 0%, #1E293B 100%);
         }
 
         /* Contenedor principal tipo 'Isla' */
@@ -21,7 +21,7 @@ def estilo():
         /* Personalización del botón */
         div.stButton > button {
             width: 100%;
-            background-color: #9EC6F3;
+            background-color: #c50707;
             color: white;
             border-radius: 10px;
             border: none;

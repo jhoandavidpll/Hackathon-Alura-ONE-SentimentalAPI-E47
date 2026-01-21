@@ -17,9 +17,8 @@ generar_menu()
 
 st.write("# SentimentAPI")
 
-seleccionar_idioma = st.selectbox("Seleccione el Idioma para la reseña", ["Español", "Portugues", "Automático"])
 
-# Aplicamos el estilo de forma muy agresiva
+# Aplicamos el estilo
 st.markdown("""
     <style>
     input {
@@ -27,36 +26,11 @@ st.markdown("""
         color: #000000 !important;
     }
     /* Quitar el color gris cuando el input está enfocado */
-    div[data-baseweb="input"]:focus-within {
+    div[data-baseweb="text_area"]:focus-within {
         background-color: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
-
-texto_ingresado = st.text_input("Ingrese texto")
-
-def detectar_idioma(seleccionar_idioma, texto_ingresado):
-    try:
-        if seleccionar_idioma == "Automático":
-            idioma = detect(texto_ingresado)
-        elif seleccionar_idioma == "Español":
-            idioma = "es"
-        elif seleccionar_idioma == "Portugues":
-            idioma = "pr"
-        else:
-            idioma = "Ingrese un texto"
-    except:
-        idioma = ""
-    return idioma
-
-salida = detectar_idioma(seleccionar_idioma, texto_ingresado)
-
-st.write(f"El idioma detectado es: {salida}")
-
-st.write(f"Texto ingresado: {texto_ingresado}")
-
-boton = st.button("Clic aquí")
-
 
 # --- ESTILOS CSS PERSONALIZADOS ---
 from funciones import *
@@ -66,15 +40,19 @@ estilo()
 # Usamos un div para envolver los widgets de Streamlit
 st.write("Selecciona el Idioma")
 
-tipo = st.selectbox("Primero, selecciona el tipo:", ["Simple", "Batch"])
+seleccionar_idioma = st.segmented_control("Seleccione el Idioma para la reseña", ["Español", "Portugues", "Automático"])
 
-comentario = st.text_area("Segundo, ingresa el comentario:", 
+#with st.expander("🪧 Idioma "):
+#    st.checkbox("Español")
+#    st.checkbox("Portugues")
+
+#tipo = st.selectbox("Primero, selecciona el tipo:", ["Simple", "Batch"])
+
+comentario = st.text_area("Ingresa el comentario:", 
                           placeholder="Ej: Este es el mejor PITCH...",
                           height=150)
 
-with st.expander("⚙️ Opciones "):
-    st.checkbox("Inicio")
-    st.checkbox("Detectar idioma")
+
 
 if st.button("ENVIAR COMENTARIO"):
     st.success("Procesando...")

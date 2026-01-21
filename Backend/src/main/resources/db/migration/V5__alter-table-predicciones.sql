@@ -1,0 +1,1 @@
+ALTER TABLE predicciones DROP COLUMN top_features;

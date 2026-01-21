@@ -1,7 +1,6 @@
 package equipo._7.SentimentAPI.controller;
 
 import ai.onnxruntime.OrtException;
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import equipo._7.SentimentAPI.domain.model.OnnxService;
@@ -21,14 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-
-import static equipo._7.SentimentAPI.domain.prediction.Language.ES;
-import static equipo._7.SentimentAPI.domain.prediction.Language.PT;
 
 @RestController
 @RequestMapping("/predict")
@@ -123,7 +118,7 @@ public class PredictionController {
                     String comentario = row[headerIndex];
 
                     // 1. Crear entidad y DTO de entrada
-                    DataSimplePrediction dataInput = new DataSimplePrediction(comentario, ES);
+                    DataSimplePrediction dataInput = new DataSimplePrediction(comentario, model);
                     Prediction prediction = new Prediction(dataInput);
 
                     // 2. Realizar inferencia con el modelo ONNX

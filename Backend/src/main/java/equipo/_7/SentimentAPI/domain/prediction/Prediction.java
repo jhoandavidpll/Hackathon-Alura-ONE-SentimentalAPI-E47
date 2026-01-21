@@ -22,8 +22,6 @@ public class Prediction {
     private String prevision;
     private float probabilidad;
     private String comentario;
-    @Column(name = "top_features")
-    private String topFeatures;
     private LocalDateTime fecha;
 
     public Prediction(DataSimplePrediction json) {
@@ -31,7 +29,6 @@ public class Prediction {
         this.prevision = "Pendiente";
         this.probabilidad = 0f;
         this.comentario = json.text();
-        this.topFeatures = "['Hola', 'uwu']";
         this.fecha = LocalDateTime.now();
     }
 

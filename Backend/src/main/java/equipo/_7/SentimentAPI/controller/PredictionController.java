@@ -42,24 +42,24 @@ public class PredictionController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity<?> simplePrediction(@RequestBody @Valid DataSimplePrediction json, UriComponentsBuilder uriComponentsBuilder) {
-           try {
-               // Crear la entidad base con el texto
-               Prediction prediction = new Prediction(json);
+    public ResponseEntity<?> simplePrediction(
+            @RequestBody @Valid DataSimplePrediction json,
+            UriComponentsBuilder uriComponentsBuilder) {
+        try {
+            // Cambiar el modelo antes de predecir
+            onnxService.cargarModelo(json.model());
 
-               // Llamar al modelo: Predecir antes de guardar
-               var resultadoModelo = onnxService.predict(json.text());
+            Prediction prediction = new Prediction(json);
+            var resultadoModelo = onnxService.predict(json.text());
 
-               // Guardar los resultados del modelo en la entidad
-               prediction.asignarResultado(resultadoModelo);
+            prediction.asignarResultado(resultadoModelo);
+            repository.save(prediction);
 
-               repository.save(prediction);
-               var uri = uriComponentsBuilder.path("/predict/{id}").buildAndExpand(prediction.getId()).toUri();
-               return ResponseEntity.created(uri).body(new DataPredictions(prediction));
-           } catch (OrtException e){
-               return ResponseEntity.internalServerError().body("Error procesando el modelo: " + e.getMessage());
-           }
-
+            var uri = uriComponentsBuilder.path("/predict/{id}").buildAndExpand(prediction.getId()).toUri();
+            return ResponseEntity.created(uri).body(new DataPredictions(prediction));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Error: " + e.getMessage());
+        }
     }
 
     @GetMapping
@@ -88,7 +88,8 @@ public class PredictionController {
             MultipartFile file,
             @RequestParam(value = "modelo")
             @NotNull(message = "Es necesario especificar el idioma (ES, PT)")
-            Language model) throws IOException {
+            Language model) throws Exception {
+        onnxService.cargarModelo(model);
 
         if (file.isEmpty() || !file.getOriginalFilename().endsWith(".csv")) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

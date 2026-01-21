@@ -42,8 +42,7 @@ public class Prediction {
         // Mapeo directo: Número -> Texto
         switch ((int) resultado.label()){
             case 0 -> this.prevision = "Negativo";
-            case 1 -> this.prevision = "Neutral";
-            case 2 -> this.prevision = "Positivo";
+            case 1 -> this.prevision = "Positivo";
             default -> this.prevision = "Desconocido";
         }
     }

@@ -58,7 +58,7 @@ public class PredictionController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DataPredictions>> predictions(@PageableDefault(size=10, sort={"prevision"}) Pageable pageable) {
+    public ResponseEntity<Page<DataPredictions>> predictions(@PageableDefault(size=10, sort={"id"}) Pageable pageable) {
         var page = repository.findAll(pageable).map(DataPredictions::new);
         return ResponseEntity.ok(page);
     }

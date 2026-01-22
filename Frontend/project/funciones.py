@@ -55,6 +55,7 @@ def estilo():
             font-size: 24px;
             margin-bottom: 20px;
         }
+        #control_pag
         </style>
         """, unsafe_allow_html=True)
 

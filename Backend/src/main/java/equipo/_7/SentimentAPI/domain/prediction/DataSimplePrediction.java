@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Size;
 
 public record DataSimplePrediction(
         @NotBlank(message = "El texto para analizar no puede estar vacío")
-        @Size(max = 300, message = "El texto es demasiado largo para la IA (máximo 300 caracteres)")
-        @Size(min = 5, message = "El texto es demasiado corto para la IA (mínimo 5 caracteres)")
+        @Size(max = 3000, message = "El texto es demasiado largo para la IA (máximo 3000 caracteres)")
+        @Size(min = 5, message = "El texto es demasiado corto para clasificarlo (mínimo 5 caracteres)")
         @JsonAlias("comentario")
         String text,
         @NotNull(message = "Es necesario especificar el idioma del modelo (ES, PT)")

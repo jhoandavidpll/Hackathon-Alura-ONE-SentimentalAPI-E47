@@ -22,6 +22,7 @@ public class Prediction {
     private String prevision;
     private float probabilidad;
     private String comentario;
+    @Column(name = "idioma")
     private Language language;
     private LocalDateTime fecha;
 

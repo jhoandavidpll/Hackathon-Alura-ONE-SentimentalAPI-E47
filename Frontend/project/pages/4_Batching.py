@@ -1,7 +1,15 @@
 import streamlit as st
-# Nota: Como 'pages' es una subcarpeta, necesitamos importar desde la raíz.
-# A veces Python en Streamlit encuentra la raíz directamente:S
-
-# --- ESTILOS CSS PERSONALIZADOS ---
+from menu import generar_menu 
+import sys
+import os
 from funciones import *
-estilo()
+
+def main():
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    st.set_page_config(page_title="Batching", layout="centered", page_icon=":brain:")
+
+    estilo()
+    generar_menu()
+
+if __name__ == "__main__":
+    main()

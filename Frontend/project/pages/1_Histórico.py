@@ -1,12 +1,8 @@
 from menu import generar_menu
-from datetime import datetime
 from funciones import *
 import streamlit as st
 import pandas as pd
 import requests
-import json
-# Nota: Como 'pages' es una subcarpeta, necesitamos importar desde la raíz.
-# A veces Python en Streamlit encuentra la raíz directamente:
 import sys
 import os
 
@@ -121,7 +117,7 @@ def main():
 
     init_session()
 
-    st.set_page_config(page_title="Histórico", layout="wide")
+    st.set_page_config(page_title="Histórico", layout="wide", page_icon=":clipboard:")
 
     generar_menu()
 

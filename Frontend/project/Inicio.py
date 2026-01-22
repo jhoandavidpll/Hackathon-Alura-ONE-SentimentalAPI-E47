@@ -96,7 +96,7 @@ def mostrar_resultado():
                         <div class="comentario">
                             “{st.session_state.data_formulario["comentario_original"]}”
                         </div>
-                        <div class="label">Idioma: {"Español" if respuesta["data"]["language"] == "ES" else "Portugués"}</div>
+                        <div class="label">Idioma: {"Español" if respuesta["data"]["idioma"] == "ES" else "Portugués"}</div>
                         <div class="label">Probabilidad: {respuesta["data"]["probabilidad"]*100:.0f}%</div>
                         <div class="barra">
                             <div class="{"barra-positiva" if respuesta["data"]["prevision"] == "Positivo" else "barra-negativa"}" style="width:{respuesta["data"]["probabilidad"]*100}%"></div>
@@ -118,7 +118,7 @@ def main():
     init_session()
 
     # --- CONFIGURACIÓN DE PÁGINA ---
-    st.set_page_config(page_title="Analizador de Sentimiento", layout="centered")
+    st.set_page_config(page_title="Analizador de Sentimiento", layout="centered", page_icon="🏅")
 
     # Llamamos al menú antes de cualquier otra cosa
     generar_menu()

@@ -45,7 +45,7 @@ public class PredictionController {
             onnxService.cargarModelo(json.model());
 
             Prediction prediction = new Prediction(json);
-            var resultadoModelo = onnxService.predict(json.text());
+            var resultadoModelo = onnxService.predict(json.cleanText());
 
             prediction.asignarResultado(resultadoModelo);
             repository.save(prediction);
@@ -100,12 +100,16 @@ public class PredictionController {
             if (registros.isEmpty()) return ResponseEntity.badRequest().build();
 
             // Localizar la columna "comentarios"
-            String[] header = registros.get(0);
+            String[] header = registros.getFirst();
             int headerIndex = -1;
+            int cleanComentIndex = -1;
             for (int i = 0; i < header.length; i++) {
                 if (header[i].trim().equalsIgnoreCase("comentarios")) {
                     headerIndex = i;
-                    break;
+
+                }
+                if (header[i].trim().equalsIgnoreCase("limpios")) {
+                    cleanComentIndex = i;
                 }
             }
 
@@ -114,16 +118,17 @@ public class PredictionController {
             // Procesar cada fila
             for (int i = 1; i < registros.size(); i++) {
                 String[] row = registros.get(i);
-                if (row.length > headerIndex && !row[headerIndex].isEmpty()) {
+                if ((row.length > headerIndex && !row[headerIndex].isEmpty()) && (row.length > cleanComentIndex && !row[cleanComentIndex].isEmpty())) {
                     String comentario = row[headerIndex];
+                    String comentarioLimpio = row[cleanComentIndex];
 
                     // 1. Crear entidad y DTO de entrada
-                    DataSimplePrediction dataInput = new DataSimplePrediction(comentario, model);
+                    DataSimplePrediction dataInput = new DataSimplePrediction(comentario, comentarioLimpio, model);
                     Prediction prediction = new Prediction(dataInput);
 
                     // 2. Realizar inferencia con el modelo ONNX
                     try {
-                        var resultadoModelo = onnxService.predict(comentario);
+                        var resultadoModelo = onnxService.predict(comentarioLimpio);
                         prediction.asignarResultado(resultadoModelo); // Asigna previsión y probabilidad
                     } catch (OrtException e) {
                         continue;

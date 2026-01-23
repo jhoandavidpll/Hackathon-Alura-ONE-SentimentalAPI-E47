@@ -1,5 +1,6 @@
 import streamlit as st
 import nltk
+import pandas as pd
 from nltk.corpus import stopwords
 from pathlib import Path
 import emoji
@@ -12,6 +13,12 @@ def estilo():
         /* Cambiar el fondo de la aplicación */
         .stApp {
             background: linear-gradient(135deg, #1E293B 0%, #1E293B 100%);
+        }
+
+        .stDownloadButton {
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
         }
 
         /* Contenedor principal tipo 'Isla' */
@@ -248,3 +255,19 @@ def limpieza_es(texto):
     palabras = texto.split()
     palabras = [p for p in palabras if p not in stop_words and len(p) > 1]
     return ' '.join(palabras)
+
+def limpieza_df(file, idioma):
+    df = pd.read_csv(file)
+
+    if "comentarios" not in df.columns:
+        return None
+
+    # Aplica la limpieza segun el idioma
+    df_limpio = df.copy()
+    if idioma == "ES":
+        df_limpio["limpios"] = df_limpio["comentarios"].apply(limpieza_es)
+    else:
+        df_limpio["limpios"] = df_limpio["comentarios"].apply(limpieza_pt)
+
+    # Retorna el archivo a enviar
+    return df_limpio[['comentarios', 'limpios']]

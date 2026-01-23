@@ -71,16 +71,14 @@ def manejo_page():
         st.session_state.actual_page -= 1
     elif seleccion == "\>" and not(ultima):
         st.session_state.actual_page += 1
-    elif seleccion == "<<":
+    elif seleccion == "<<" and not(primera):
         st.session_state.actual_page = 0
-    elif seleccion == "\>>":
+    elif seleccion == "\>>" and not(ultima):
         st.session_state.actual_page = total
     
     if pagina_anterior != st.session_state.actual_page:
         obtener_datos()
         st.session_state.actualizado = True
-    else:
-        st.session_state.actualizado = False
 
 def mostar_historial():
     # Muesta la tabla

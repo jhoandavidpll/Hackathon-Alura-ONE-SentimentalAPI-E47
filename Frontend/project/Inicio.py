@@ -26,11 +26,13 @@ def envio_peticion():
     try:
         # Limpieza del comentario
         if (st.session_state.data_formulario["modelo"] == "ES"):
-            comentario_limpio = limpieza_es(st.session_state.data_formulario["comentario_original"])
+            comentario_limpio = limpieza_es(st.session_state.data_formulario["comentario"])
         else:
-            comentario_limpio = limpieza_pt(st.session_state.data_formulario["comentario_original"])
+            comentario_limpio = limpieza_pt(st.session_state.data_formulario["comentario"])
 
-        st.session_state.data_formulario["comentario"] = comentario_limpio
+        st.session_state.data_formulario["comentario_limpio"] = comentario_limpio
+
+        print(st.session_state.data_formulario)
 
         # Llamada a la api
         response = requests.post(
@@ -65,8 +67,8 @@ def mostrar_formulario():
     
     # Guarda los datos del formulario
     st.session_state.data_formulario = {
-        "comentario_original": comentario,
-        "comentario": None,
+        "comentario": comentario,
+        "comentario_limpio": None,
         "modelo" : "ES" if seleccionar_idioma == "Español" else "PT"
     }
 
@@ -78,6 +80,8 @@ def mostrar_formulario():
 
 def mostrar_resultado():
     st.title(":trophy: Resultados")
+
+    st.balloons()
 
     # Muestra la respuesta de la peticion
     if st.session_state.respuesta_api:
@@ -94,7 +98,7 @@ def mostrar_resultado():
                     </div>
                     <div class="barra-container">
                         <div class="comentario">
-                            “{st.session_state.data_formulario["comentario_original"]}”
+                            “{st.session_state.data_formulario["comentario"]}”
                         </div>
                         <div class="label">Idioma: {"Español" if respuesta["data"]["idioma"] == "ES" else "Portugués"}</div>
                         <div class="label">Probabilidad: {respuesta["data"]["probabilidad"]*100:.0f}%</div>

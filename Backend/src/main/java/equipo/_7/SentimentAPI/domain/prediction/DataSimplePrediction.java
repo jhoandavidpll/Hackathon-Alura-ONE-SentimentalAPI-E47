@@ -11,6 +11,10 @@ public record DataSimplePrediction(
         @Size(min = 5, message = "El texto es demasiado corto para clasificarlo (mínimo 5 caracteres)")
         @JsonAlias("comentario")
         String text,
+        @Size(max = 3000, message = "El texto es demasiado largo para la IA (máximo 3000 caracteres)")
+        @Size(min = 5, message = "El texto es demasiado corto para clasificarlo (mínimo 5 caracteres)")
+        @JsonAlias("comentario_limpio")
+        String cleanText,
         @NotNull(message = "Es necesario especificar el idioma del modelo (ES, PT)")
         @JsonAlias("modelo")
         Language model

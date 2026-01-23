@@ -7,14 +7,14 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from menu import generar_menu
 from funciones import estilo
 
-st.set_page_config(page_title="Documentación", layout="wide", page_icon=":open_file_folder:")
+st.set_page_config(page_title="Estadísticas", layout="wide", page_icon=":bar_chart:")
 
 generar_menu()
 
 # --- ESTILOS CSS PERSONALIZADOS ---
 estilo()
 
-st.title("Documentación")
+st.title("Estadísticas")
 # ... resto de tu código
 
 st.write("## Este un título H2")

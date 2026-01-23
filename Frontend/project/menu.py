@@ -69,7 +69,7 @@ def generar_menu():
                 <li><a href='/' target='_self'>🏅 Inicio</a></li>
                 <li><a href='/Batching' target='_self'>🧠 Batching</a></li>
                 <li><a href='/Histórico' target='_self'>📋 Histórico</a></li>
-                <li><a href='/Documentación' target='_self'>🗂️ Documentación</a></li>
+                <li><a href='/Estadísticas' target='_self'>📊 Estadísticas</a></li>
                 <li><a href='/Acerca' target='_self'>👥 Acerca de nosotros</a></li>
             </ul>
         </div>

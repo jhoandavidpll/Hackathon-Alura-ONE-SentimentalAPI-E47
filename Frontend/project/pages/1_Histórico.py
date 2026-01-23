@@ -19,7 +19,9 @@ def init_session():
     if "tabla" not in st.session_state:
         st.session_state.tabla = pd.DataFrame()
     if "actualizado" not in st.session_state:
-        st.session_state.actualizado = True
+        st.session_state.actualizado = False
+    if "filas_eliminar" not in st.session_state:
+        st.session_state.filas_eliminar = []
 
 def obtener_datos():
     try:
@@ -49,11 +51,9 @@ def obtener_datos():
                 st.session_state.tabla = new_df[["id", "comentario", "prevision", "probabilidad_%", "idioma", "fecha"]]
             else:
                 st.session_state.tabla = pd.DataFrame()
-                
         else:
             st.error(f"Error al obtener datos: {response.status_code}")
             st.session_state.tabla = pd.DataFrame()
-            
     except Exception as e:
         st.error(f"Error de conexión: {str(e)}")
         st.session_state.tabla = pd.DataFrame()
@@ -78,13 +78,55 @@ def manejo_page():
     
     if pagina_anterior != st.session_state.actual_page:
         obtener_datos()
-        st.session_state.actualizado = True
+
+def eliminar_comentario():
+    try:
+        indices = st.session_state.filas_eliminar
+        df = st.session_state.tabla
+
+        if not indices.empty:
+            for i in indices:
+                # Llamada a la api
+                response = requests.delete(
+                    f"http://localhost:8080/predict/{df['id'][i]}"
+                )
+                if response.status_code != 204:
+                    st.error(f"Error {response.status_code}: {response.json()[0]['error']}")
+                    return False
+
+            # Reinicia las variables de sesion
+            st.session_state.filas_eliminar = []
+            obtener_datos()
+            st.session_state.actualizado = False
+
+            # Manejo de paginas
+            if st.session_state.actual_page >= st.session_state.total_page:
+                st.session_state.actual_page = st.session_state.total_page-1
+
+            # Reinicia el main
+            st.rerun()
+    except Exception as e:
+        st.error(f"Error: {e}")
 
 def mostar_historial():
     # Muesta la tabla
-    df = st.session_state.tabla
+    df = st.session_state.tabla.copy()
     if not df.empty:
-        st.dataframe(df, use_container_width=True)
+        # st.dataframe(df, use_container_width=True)
+        df['eliminar'] = False
+
+        edited_df = st.data_editor(
+            df,
+            use_container_width=True,
+            num_rows="fixed"
+        )
+        filas_eliminar = edited_df[edited_df["eliminar"]].index
+
+        if not filas_eliminar.empty:
+            st.session_state.filas_eliminar = filas_eliminar
+
+        if st.button(label="Eliminar", icon="🗑️", key="eliminar",  disabled=True if filas_eliminar.empty else False):
+            eliminar_comentario()
     else:
         st.info("No hay datos disponibles")
 
@@ -132,7 +174,7 @@ def main():
             if st.session_state.tabla.empty:
                 obtener_datos()
 
-            if st.session_state.actualizado:
+            if not st.session_state.actualizado:
                 mostar_historial()
 
 if __name__ == "__main__":

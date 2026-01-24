@@ -252,15 +252,7 @@ personas = [
         'linkedin': 'https://www.linkedin.com/in/mitchel-poblete/',
         'github': 'https://github.com/MiitchPs',
         'foto': 'https://avatars.githubusercontent.com/u/105990185?v=4',
-        'descripcion': 'Analista Pogramador, certificado en Data Science y OCI '
-    },
-    {
-        'nombre': 'Nydia Naomi Olmos Romero',
-        'rol': 'Backend',
-        'linkedin': 'http://www.linkedin.com/in/nydia-olmos',
-        'github': 'https://github.com/NydiaOlmos',
-        'foto': 'https://avatars.githubusercontent.com/u/111654273?v=4',
-        'descripcion': 'Ingeniera en Computación Inteligente, especializada en la ciencia de datos y aprendizaje de máquina, con alto interés en el computo en la nube y back end'
+        'descripcion': 'Analista Pogramador - Cert.DataScience - Cert.Oracle Cloud Infrastructure OCI '
     },
     {
         'nombre': 'Jhoan David Pillapa Llerena',
@@ -268,7 +260,55 @@ personas = [
         'linkedin': 'https://www.linkedin.com/in/jhoandavidpll/',
         'github': 'https://github.com/jhoandavidpll',
         'foto': 'https://avatars.githubusercontent.com/u/66537133?s=400&u=82d981fa4f723616d5809b2fc3f84999b8d29fbe&v=4',
-        'descripcion': 'Experto en transformar grandes volúmenes de datos en insights accionables para acelerar el crecimiento del negocio. Especialista en automatización de reportes (Power BI/Python).'
+        'descripcion': 'Ingeniero en Electrónica, Telecomunicaciones y Redes. Data Science, experto en transformar grandes volúmenes de datos en insights.'
+    },
+        {
+        'nombre': 'Andres Felipe Cubillos Hurtado',
+        'rol': 'Data Science',
+        'linkedin': 'https://www.linkedin.com/in/andres-felipe-cubillos-hurtado-5a03a4189/',
+        'github': 'https://github.com/andrewcubillos',
+        'foto': 'https://avatars.githubusercontent.com/u/32993313?s=400&u=71f20d47c8bdce83b4cb965eb9f7d3d4b540c231&v=4',
+        'descripcion': 'Ingeniero de Sistema. Análisis de datos con enfoqe en monitoreo y ciencia de datos.'
+    },
+        {
+        'nombre': 'Andrés Huerta Salgado',
+        'rol': 'Data Science',
+        'linkedin': 'https://www.linkedin.com/in/andres-huerta-salgado-129474338/',
+        'github': 'https://github.com/AHS30',
+        'foto': 'https://avatars.githubusercontent.com/u/108943856?v=4',
+        'descripcion': 'Estudiante de Sistemas Computacionales'
+    },
+        {
+        'nombre': 'Jeferson José Peña Curvelo',
+        'rol': 'Data Science',
+        'linkedin': 'https://www.linkedin.com/in/jefersonjpc/',
+        'github': 'https://github.com/JeffPeC',
+        'foto': 'https://avatars.githubusercontent.com/u/201787396?s=400&u=ea59ecbe2fbb6456ff86fb04719bfdcd5f1636a4&v=4',
+        'descripcion': 'Analista de Sistemas, Informático, actualmente enfocado en expandir mis conocimientos en Data Science.'
+    },
+        {
+        'nombre': 'Nydia Naomi Olmos Romero',
+        'rol': 'Backend',
+        'linkedin': 'http://www.linkedin.com/in/nydia-olmos',
+        'github': 'https://github.com/NydiaOlmos',
+        'foto': 'https://avatars.githubusercontent.com/u/111654273?v=4',
+        'descripcion': 'Ingeniera en Computación Inteligente, especializada en la ciencia de datos y aprendizaje de máquina, con alto interés en el computo en la nube y back end'
+    },
+        {
+        'nombre': 'Brandon Omar Ortiz Gutierrez ',
+        'rol': 'Backend',
+        'linkedin': 'https://www.linkedin.com/in/brandon-ortiz-back',
+        'github': 'https://github.com/brandon-informatico',
+        'foto': 'https://avatars.githubusercontent.com/u/193290626?v=4',
+        'descripcion': 'Ingeniero en Informática enfocado en back-end, BD relacionales, manejo de soluciones en la nube, con gran interes en la ingeniería de datos.'
+    },
+            {
+        'nombre': 'Christian',
+        'rol': 'Backend',
+        'linkedin': 'http://www.linkedin.com/in/cristian-larios',
+        'github': 'https://github.com/Fas5ter',
+        'foto': 'https://avatars.githubusercontent.com/u/96441511?v=4',
+        'descripcion': 'Ingeniero en Computación Inteligente, Arquitecto de Soluciones en la Nube, Científico de Datos y Desarrollador de Software Full Stack'
     }
 ]
 

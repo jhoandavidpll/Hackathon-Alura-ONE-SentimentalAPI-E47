@@ -26,9 +26,22 @@ enlaces = st.container()
 
 
 ### Contenido principal de la aplicación
-# Contenido para el titulo
-titulo.title("Sobre el Proyecto")
-titulo.header("\"Detectamos problemas y promovemos oportunidades de mejora\"")
+# URL de tu imagen
+url_logo = "https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/logo_BEE.png"
+
+# Ajustamos las columnas para un tamaño mediano
+# la columna central se vuelve más estrecha, reduciendo el tamaño de la imagen.
+# Imagen centrada, tamaño 350px y esquinas redondeadas
+titulo.markdown(
+    f"""
+    <div style="display: flex; justify-content: center;">
+        <img src="{url_logo}" width="550" style="border-radius: 100px; box-shadow: 0px 10px 10px rgba(0,0,0,0.1);">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+#titulo.header("Inteligencia Colectiva para Decisiones individuales")
 titulo.write("---")
 
 #Seccion: Presentacion del Proyecto
@@ -72,7 +85,7 @@ descripcion.write("""
     </style>
     <div class='description-box'>
         <div class='description-text'>
-            <p>SentimentAPI es una aplicación de análisis de sentimientos que convierte comentarios de texto en insights claros y accionables, de forma rápida, sencilla y accesible.</p>
+            <p>Nuestra SentimentAPI, entiende las necesidades y frustraciones de los clientes. Trasformamos el ruido de los comentarios para que la empresa dejen de adivinar y empiece a conectar.</p>
         </div>
         <div class='description-features'>
             <ul>
@@ -229,7 +242,7 @@ mapa.write("""
     <style>
 
     </style>
-    <h1>Roadmap</h1>
+    <h1>Infraestructura</h1>
 
 """,unsafe_allow_html=True)
 

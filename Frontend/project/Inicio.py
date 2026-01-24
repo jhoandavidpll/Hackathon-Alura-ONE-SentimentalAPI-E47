@@ -32,8 +32,6 @@ def envio_peticion():
 
         st.session_state.data_formulario["comentario_limpio"] = comentario_limpio
 
-        print(st.session_state.data_formulario)
-
         # Llamada a la api
         response = requests.post(
             "http://localhost:8080/predict",

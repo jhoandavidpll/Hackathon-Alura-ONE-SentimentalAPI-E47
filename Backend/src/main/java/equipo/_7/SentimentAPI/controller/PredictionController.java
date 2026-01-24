@@ -24,6 +24,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -175,13 +177,22 @@ public class PredictionController {
                     .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
                     .collect(Collectors.toList());
         } else if (dataRequestStats.fechaInicio() != null && dataRequestStats.fechaFin() != null) {
-            respuesta = repository.top5PalabrasMasRepetidasPorFecha(dataRequestStats.clasificacion(), dataRequestStats.language(),
-                        dataRequestStats.fechaInicio().toInstant()
-                            .atZone(ZoneId.systemDefault())
-                            .toLocalDateTime(),
-                        dataRequestStats.fechaFin().toInstant()
-                            .atZone(ZoneId.systemDefault())
-                            .toLocalDateTime())
+
+            // Cambio de formato de Date a LocalDateTime
+            LocalDate fechaIniLocalDate = dataRequestStats.fechaInicio().toInstant()
+                    .atZone(ZoneId.of("UTC")) // Usar UTC para evitar problemas de zona horaria
+                    .toLocalDate();
+
+            LocalDate fechaFinLocalDate = dataRequestStats.fechaFin().toInstant()
+                    .atZone(ZoneId.of("UTC"))
+                    .toLocalDate();
+
+            // Crear LocalDateTime con las horas específicas
+            LocalDateTime fechaIni = fechaIniLocalDate.atStartOfDay(); // 00:00:00
+            LocalDateTime fechaFin = fechaFinLocalDate.atTime(23, 59, 59);
+
+            // Extrae las palabras
+            respuesta = repository.top5PalabrasMasRepetidasPorFecha(dataRequestStats.clasificacion(), dataRequestStats.language(), fechaIni,fechaFin)
                     .stream()
                     .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
                     .collect(Collectors.toList());
@@ -206,14 +217,21 @@ public class PredictionController {
                     .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
                     .toList();
         } else if (dataRequestFrequency.fechaInicio() != null && dataRequestFrequency.fechaFin() != null) {
-            respuesta = repository.cantidadSentimientoPorFecha(
-                    dataRequestFrequency.language(),
-                    dataRequestFrequency.fechaInicio().toInstant()
-                            .atZone(ZoneId.systemDefault())
-                            .toLocalDateTime(),
-                    dataRequestFrequency.fechaFin().toInstant()
-                            .atZone(ZoneId.systemDefault())
-                            .toLocalDateTime())
+
+            // Cambio de formato de Date a LocalDateTime
+            LocalDate fechaIniLocalDate = dataRequestFrequency.fechaInicio().toInstant()
+                    .atZone(ZoneId.of("UTC")) // Usar UTC para evitar problemas de zona horaria
+                    .toLocalDate();
+
+            LocalDate fechaFinLocalDate = dataRequestFrequency.fechaFin().toInstant()
+                    .atZone(ZoneId.of("UTC"))
+                    .toLocalDate();
+
+            // Crear LocalDateTime con las horas específicas
+            LocalDateTime fechaIni = fechaIniLocalDate.atStartOfDay(); // 00:00:00
+            LocalDateTime fechaFin = fechaFinLocalDate.atTime(23, 59, 59);
+
+            respuesta = repository.cantidadSentimientoPorFecha(dataRequestFrequency.language(), fechaIni, fechaFin)
                 .stream()
                 .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
                 .toList();

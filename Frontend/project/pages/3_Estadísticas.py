@@ -5,24 +5,28 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from menu import generar_menu
-from funciones import *
+from funciones import estilo
 
-st.set_page_config(page_title="Histórico", layout="wide")
+st.set_page_config(page_title="Estadísticas", layout="wide", page_icon=":bar_chart:")
 
 generar_menu()
 
 # --- ESTILOS CSS PERSONALIZADOS ---
 estilo()
 
-st.title("Datos Históricos")
+st.title("Estadísticas")
 # ... resto de tu código
 
-st.write("# Histórico")
+st.write("## Este un título H2")
 
 # importar datos
 import pandas as pd
 import numpy as np
 
-data = pd.read_csv("/home/jhoan/Documentos/portfolio/Hackathon-Alura-ONE-SentimentalAPI-E47/Data-Science/data/spanish/train.csv")
+chart_data = pd.DataFrame(
+    np.random.randn(20, 3),
+    columns = ["a", "b", "c"]
+)
 
-st.write(data)
+st.bar_chart(chart_data)
+st.line_chart(chart_data)

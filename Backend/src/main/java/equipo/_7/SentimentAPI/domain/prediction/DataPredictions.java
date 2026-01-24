@@ -1,13 +1,16 @@
 package equipo._7.SentimentAPI.domain.prediction;
 
-public record DataPredictions(Long id,String prevision, float probabilidad, String topFeatures, String comentario) {
+import java.time.LocalDateTime;
+
+public record DataPredictions(Long id, String comentario, String prevision, float probabilidad, Language idioma, LocalDateTime fecha) {
     public DataPredictions(Prediction prediction) {
         this(
             prediction.getId(),
+            prediction.getComentario(),
             prediction.getPrevision(),
             prediction.getProbabilidad(),
-            prediction.getTopFeatures(),
-            prediction.getComentario()
+            prediction.getLanguage(),
+            prediction.getFecha()
         );
     }
 }

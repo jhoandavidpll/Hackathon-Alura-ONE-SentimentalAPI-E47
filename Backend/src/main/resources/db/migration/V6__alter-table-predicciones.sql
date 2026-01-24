@@ -1,0 +1,1 @@
+ALTER TABLE predicciones ADD idioma VARCHAR(5);

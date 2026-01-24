@@ -1,7 +1,6 @@
 package equipo._7.SentimentAPI.controller;
 
 import ai.onnxruntime.OrtException;
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import equipo._7.SentimentAPI.domain.model.OnnxService;
@@ -16,19 +15,21 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static equipo._7.SentimentAPI.domain.prediction.Language.ES;
-import static equipo._7.SentimentAPI.domain.prediction.Language.PT;
 
 @RestController
 @RequestMapping("/predict")
@@ -40,6 +41,8 @@ public class PredictionController {
     @Autowired
     private OnnxService onnxService;
 
+    // ******************************************* CRUD BÁSICO *******************************************************
+    // Clasificación de un único comentario
     @Transactional
     @PostMapping
     public ResponseEntity<?> simplePrediction(
@@ -50,7 +53,7 @@ public class PredictionController {
             onnxService.cargarModelo(json.model());
 
             Prediction prediction = new Prediction(json);
-            var resultadoModelo = onnxService.predict(json.text());
+            var resultadoModelo = onnxService.predict(json.cleanText());
 
             prediction.asignarResultado(resultadoModelo);
             repository.save(prediction);
@@ -62,25 +65,7 @@ public class PredictionController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<Page<DataPredictions>> predictions(@PageableDefault(size=10, sort={"prevision"}) Pageable pageable) {
-        var page = repository.findAll(pageable).map(DataPredictions::new);
-        return ResponseEntity.ok(page);
-    }
-
-    @Transactional
-    @DeleteMapping("/{id}")
-    public ResponseEntity deletePredictions(@PathVariable Long id) {
-       repository.deleteById(id);
-       return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<DataPredictions> singlePrediction(@PathVariable Long id) {
-        var prediction =  repository.getReferenceById(id);
-        return ResponseEntity.ok(new DataPredictions(prediction));
-    }
-
+    // Clasificación a través de archivos
     @PostMapping(value = "/csv", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<List<DataPredictions>> csvPrediction(
             @RequestParam(value = "archivo")
@@ -105,12 +90,16 @@ public class PredictionController {
             if (registros.isEmpty()) return ResponseEntity.badRequest().build();
 
             // Localizar la columna "comentarios"
-            String[] header = registros.get(0);
+            String[] header = registros.getFirst();
             int headerIndex = -1;
+            int cleanComentIndex = -1;
             for (int i = 0; i < header.length; i++) {
                 if (header[i].trim().equalsIgnoreCase("comentarios")) {
                     headerIndex = i;
-                    break;
+
+                }
+                if (header[i].trim().equalsIgnoreCase("limpios")) {
+                    cleanComentIndex = i;
                 }
             }
 
@@ -119,16 +108,17 @@ public class PredictionController {
             // Procesar cada fila
             for (int i = 1; i < registros.size(); i++) {
                 String[] row = registros.get(i);
-                if (row.length > headerIndex && !row[headerIndex].isEmpty()) {
+                if ((row.length > headerIndex && !row[headerIndex].isEmpty()) && (row.length > cleanComentIndex && !row[cleanComentIndex].isEmpty())) {
                     String comentario = row[headerIndex];
+                    String comentarioLimpio = row[cleanComentIndex];
 
                     // 1. Crear entidad y DTO de entrada
-                    DataSimplePrediction dataInput = new DataSimplePrediction(comentario, ES);
+                    DataSimplePrediction dataInput = new DataSimplePrediction(comentario, comentarioLimpio, model);
                     Prediction prediction = new Prediction(dataInput);
 
                     // 2. Realizar inferencia con el modelo ONNX
                     try {
-                        var resultadoModelo = onnxService.predict(comentario);
+                        var resultadoModelo = onnxService.predict(comentarioLimpio);
                         prediction.asignarResultado(resultadoModelo); // Asigna previsión y probabilidad
                     } catch (OrtException e) {
                         continue;
@@ -146,5 +136,90 @@ public class PredictionController {
         }
 
         return ResponseEntity.ok(resultList);
+    }
+
+    // Listado de clasificaciones
+    @GetMapping
+    public ResponseEntity<Page<DataPredictions>> predictions(@PageableDefault(size=10, sort={"id"}) Pageable pageable) {
+        var page = repository.findAll(pageable).map(DataPredictions::new);
+        return ResponseEntity.ok(page);
+    }
+
+    // Recupera una única clasificación
+    @GetMapping("/{id}")
+    public ResponseEntity<DataPredictions> singlePrediction(@PathVariable Long id) {
+        var prediction =  repository.getReferenceById(id);
+        return ResponseEntity.ok(new DataPredictions(prediction));
+    }
+
+    // Elimina un registro
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePredictions(@PathVariable Long id) {
+       repository.deleteById(id);
+       return ResponseEntity.noContent().build();
+    }
+
+    // ******************************************* ESTADÍSTICAS *******************************************************
+    // Top 5 palabras más repetidas
+    @GetMapping("/stats/words")
+    public ResponseEntity<List<DataStatsPrediction>> statistics(
+            @Valid
+            @RequestBody
+            DataRequestStats dataRequestStats
+    ) {
+        List<DataStatsPrediction> respuesta = new ArrayList<>();
+
+        if (dataRequestStats.fechaInicio() == null && dataRequestStats.fechaFin() == null) {
+            respuesta = repository.top5PalabrasMasRepetidas(dataRequestStats.clasificacion(), dataRequestStats.language()).stream()
+                    .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
+                    .collect(Collectors.toList());
+        } else if (dataRequestStats.fechaInicio() != null && dataRequestStats.fechaFin() != null) {
+            respuesta = repository.top5PalabrasMasRepetidasPorFecha(dataRequestStats.clasificacion(), dataRequestStats.language(),
+                        dataRequestStats.fechaInicio().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime(),
+                        dataRequestStats.fechaFin().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime())
+                    .stream()
+                    .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
+                    .collect(Collectors.toList());
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(respuesta);
+    }
+
+    // Cantidad de comentarios por cada sentimiento según el idioma
+    @GetMapping("/stats")
+    public ResponseEntity<List<DataStatsPrediction>> frequency(
+            @Valid
+            @RequestBody
+            DataRequestFrequency dataRequestFrequency) {
+        List<DataStatsPrediction> respuesta = new ArrayList<>();
+
+        if (dataRequestFrequency.fechaInicio() == null && dataRequestFrequency.fechaFin() == null) {
+            respuesta = repository.cantidadSentimiento(dataRequestFrequency.language())
+                    .stream()
+                    .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
+                    .toList();
+        } else if (dataRequestFrequency.fechaInicio() != null && dataRequestFrequency.fechaFin() != null) {
+            respuesta = repository.cantidadSentimientoPorFecha(
+                    dataRequestFrequency.language(),
+                    dataRequestFrequency.fechaInicio().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime(),
+                    dataRequestFrequency.fechaFin().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime())
+                .stream()
+                .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
+                .toList();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok( respuesta );
     }
 }

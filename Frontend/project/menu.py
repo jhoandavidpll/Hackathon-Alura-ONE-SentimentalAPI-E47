@@ -62,9 +62,12 @@ def generar_menu():
         }
     </style>
 
-    <div class='fixed-header'>
+<div class='fixed-header'>
         <div class='header1'>
-            <h1>🏅SentimentAPI</h1>
+            <a href='/' class='logo-container'>
+                <img src='https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/logo_BEE.png' 
+                     alt='Logo BEE' style='height: 65px; width: auto;'>
+            </a>
             <ul class='header2'>
                 <li><a href='/' target='_self'>🏅 Inicio</a></li>
                 <li><a href='/Batching' target='_self'>🧠 Batching</a></li>
@@ -73,5 +76,5 @@ def generar_menu():
                 <li><a href='/Acerca' target='_self'>👥 Acerca de nosotros</a></li>
             </ul>
         </div>
-    <div/>
+    </div>
     """, unsafe_allow_html=True)

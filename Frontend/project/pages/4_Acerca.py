@@ -246,6 +246,16 @@ mapa.write("""
 
 """,unsafe_allow_html=True)
 
+url_infraestructura = 'https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/Infraestrucura_sentimentAPI.png'
+
+mapa.markdown(
+    f"""
+    <div style="display: flex; justify-content: center;">
+        <img src="{url_infraestructura}" width="800" style="border-radius: 20px; box-shadow: 0px 10px 10px rgba(0,0,0,0.1);">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 mapa.write("---")
 
     #Seccion: Presentacion del Equipo
@@ -520,7 +530,7 @@ herramientas.write("""
         font-weight:600;
     }
     </style>
-    <h1>Stack Tecnologico</h1>
+    <h1>Stack Tecnológico</h1>
     <div class="tech-grid">
         <div>
             <a href="https://www.java.com/es/">

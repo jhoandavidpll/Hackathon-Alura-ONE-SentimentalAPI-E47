@@ -14,7 +14,7 @@ def estilo():
         <style>
         /* 1. Fondo principal - Oscuro y profundo */
         .stApp {
-            background: #0D1117; /* Un negro muy oscuro para el espacio profundo */
+            background: #283241; /* Un negro muy oscuro para el espacio profundo */
             overflow-x: hidden; /* Evitar scroll horizontal si las estrellas se mueven */
         }
 

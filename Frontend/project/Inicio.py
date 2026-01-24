@@ -138,7 +138,7 @@ def main():
     # --- FOOTER ---
     st.markdown("""
         <div style="text-align: center; color: white; margin-top: 30px; font-size: 0.8em;">
-            Desarrollado por E47 
+            Desarrollado por E47 | BEEsionary
         </div>
         """, unsafe_allow_html=True)
 

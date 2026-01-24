@@ -11,6 +11,7 @@ public record DataSimplePrediction(
         @Size(min = 5, message = "El texto es demasiado corto para clasificarlo (mínimo 5 caracteres)")
         @JsonAlias("comentario")
         String text,
+        @NotBlank(message = "El texto para analizar no puede estar vacío")
         @Size(max = 3000, message = "El texto es demasiado largo para la IA (máximo 3000 caracteres)")
         @Size(min = 5, message = "El texto es demasiado corto para clasificarlo (mínimo 5 caracteres)")
         @JsonAlias("comentario_limpio")

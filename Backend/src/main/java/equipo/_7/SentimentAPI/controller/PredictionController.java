@@ -15,6 +15,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,8 +24,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static equipo._7.SentimentAPI.domain.prediction.Language.ES;
 
 @RestController
 @RequestMapping("/predict")
@@ -35,6 +41,8 @@ public class PredictionController {
     @Autowired
     private OnnxService onnxService;
 
+    // ******************************************* CRUD BÁSICO *******************************************************
+    // Clasificación de un único comentario
     @Transactional
     @PostMapping
     public ResponseEntity<?> simplePrediction(
@@ -57,25 +65,7 @@ public class PredictionController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<Page<DataPredictions>> predictions(@PageableDefault(size=10, sort={"id"}) Pageable pageable) {
-        var page = repository.findAll(pageable).map(DataPredictions::new);
-        return ResponseEntity.ok(page);
-    }
-
-    @Transactional
-    @DeleteMapping("/{id}")
-    public ResponseEntity deletePredictions(@PathVariable Long id) {
-       repository.deleteById(id);
-       return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<DataPredictions> singlePrediction(@PathVariable Long id) {
-        var prediction =  repository.getReferenceById(id);
-        return ResponseEntity.ok(new DataPredictions(prediction));
-    }
-
+    // Clasificación a través de archivos
     @PostMapping(value = "/csv", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<List<DataPredictions>> csvPrediction(
             @RequestParam(value = "archivo")
@@ -146,5 +136,90 @@ public class PredictionController {
         }
 
         return ResponseEntity.ok(resultList);
+    }
+
+    // Listado de clasificaciones
+    @GetMapping
+    public ResponseEntity<Page<DataPredictions>> predictions(@PageableDefault(size=10, sort={"id"}) Pageable pageable) {
+        var page = repository.findAll(pageable).map(DataPredictions::new);
+        return ResponseEntity.ok(page);
+    }
+
+    // Recupera una única clasificación
+    @GetMapping("/{id}")
+    public ResponseEntity<DataPredictions> singlePrediction(@PathVariable Long id) {
+        var prediction =  repository.getReferenceById(id);
+        return ResponseEntity.ok(new DataPredictions(prediction));
+    }
+
+    // Elimina un registro
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePredictions(@PathVariable Long id) {
+       repository.deleteById(id);
+       return ResponseEntity.noContent().build();
+    }
+
+    // ******************************************* ESTADÍSTICAS *******************************************************
+    // Top 5 palabras más repetidas
+    @GetMapping("/stats/words")
+    public ResponseEntity<List<DataStatsPrediction>> statistics(
+            @Valid
+            @RequestBody
+            DataRequestStats dataRequestStats
+    ) {
+        List<DataStatsPrediction> respuesta = new ArrayList<>();
+
+        if (dataRequestStats.fechaInicio() == null && dataRequestStats.fechaFin() == null) {
+            respuesta = repository.top5PalabrasMasRepetidas(dataRequestStats.clasificacion(), dataRequestStats.language()).stream()
+                    .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
+                    .collect(Collectors.toList());
+        } else if (dataRequestStats.fechaInicio() != null && dataRequestStats.fechaFin() != null) {
+            respuesta = repository.top5PalabrasMasRepetidasPorFecha(dataRequestStats.clasificacion(), dataRequestStats.language(),
+                        dataRequestStats.fechaInicio().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime(),
+                        dataRequestStats.fechaFin().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime())
+                    .stream()
+                    .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
+                    .collect(Collectors.toList());
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(respuesta);
+    }
+
+    // Cantidad de comentarios por cada sentimiento según el idioma
+    @GetMapping("/stats")
+    public ResponseEntity<List<DataStatsPrediction>> frequency(
+            @Valid
+            @RequestBody
+            DataRequestFrequency dataRequestFrequency) {
+        List<DataStatsPrediction> respuesta = new ArrayList<>();
+
+        if (dataRequestFrequency.fechaInicio() == null && dataRequestFrequency.fechaFin() == null) {
+            respuesta = repository.cantidadSentimiento(dataRequestFrequency.language())
+                    .stream()
+                    .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
+                    .toList();
+        } else if (dataRequestFrequency.fechaInicio() != null && dataRequestFrequency.fechaFin() != null) {
+            respuesta = repository.cantidadSentimientoPorFecha(
+                    dataRequestFrequency.language(),
+                    dataRequestFrequency.fechaInicio().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime(),
+                    dataRequestFrequency.fechaFin().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime())
+                .stream()
+                .map(fila -> new DataStatsPrediction((String) fila[0], ((Number) fila[1]).intValue()))
+                .toList();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok( respuesta );
     }
 }

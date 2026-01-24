@@ -57,7 +57,7 @@ def envio_peticion():
 def mostrar_formulario(): 
     st.write("# SentimentAPI")
     # --- CONTENIDO ---
-    seleccionar_idioma = st.segmented_control("Seleccione el Idioma de la reseña", ["Español", "Portugués"], default="Español")
+    seleccionar_idioma = st.segmented_control("🐝 Seleccione el Idioma de la reseña", ["Español", "Portugués"], default="Español")
 
     comentario = st.text_area("Ingresa el comentario:", 
                             placeholder="Ej: Este es el mejor PITCH...",

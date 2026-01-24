@@ -107,12 +107,24 @@ def estilo():
             box-shadow: 0 4px 15px rgba(197, 7, 7, 0.4);
         }
         
-        div.stButton > button:hover {
-            background-color: #9e0505;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(197, 7, 7, 0.6);
+        /* 5. Botón tipo "Power-up" */
+        div.stButton > button {
+            width: 100%;
+            background: linear-gradient(90deg, #c50707 0%, #9e0505 100%);
             color: white;
-            cursor: pointer;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(197, 7, 7, 0.4);
+        }
+
+        div.stButton > button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
+            background: #FFC107;
+            color: #121212;
         }
         
         /* Títulos dentro de la isla - con gradiente sutil y contraste */
@@ -132,8 +144,6 @@ def estilo():
         }
         </style>
         """, unsafe_allow_html=True)
-
-
 
 
 def estilo_resulado(): 

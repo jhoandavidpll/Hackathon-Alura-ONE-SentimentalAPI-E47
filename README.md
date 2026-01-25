@@ -22,6 +22,7 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 ![Logo BEEsionary](https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/logo_BEE.png)
 
 # Startup SentimentalAPI
+![infraestructura](https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/Infraestrucura_sentimentAPI.png)
 # Integrantes del Proyecto
 - Jhoan David Pillapa Llerena
 - Mitchel David Poblete Santibañez

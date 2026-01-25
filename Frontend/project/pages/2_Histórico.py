@@ -1,0 +1,181 @@
+from menu import generar_menu
+from funciones import *
+import streamlit as st
+import pandas as pd
+import requests
+import sys
+import os
+
+# Inicializa la sesion
+def init_session():
+    if "actual_page" not in st.session_state:
+        st.session_state.actual_page = 0
+    if "total_page" not in st.session_state:
+        st.session_state.total_page = None
+    if "primero" not in st.session_state:
+        st.session_state.primero = True
+    if "ultimo" not in st.session_state:
+        st.session_state.ultimo = False
+    if "tabla" not in st.session_state:
+        st.session_state.tabla = pd.DataFrame()
+    if "actualizado" not in st.session_state:
+        st.session_state.actualizado = False
+    if "filas_eliminar" not in st.session_state:
+        st.session_state.filas_eliminar = []
+
+def obtener_datos():
+    try:
+        response = requests.get(
+            f"http://localhost:8080/predict?page={st.session_state.actual_page}"
+        )
+        
+        if response.status_code == 200:
+            data = response.json()
+            
+            # Actualiza la sesion
+            st.session_state.total_page = int(data['totalPages'])
+            st.session_state.primero = data['first']
+            st.session_state.ultimo = data['last']
+            
+            # Crear y guardar DataFrame
+            if data['content']:
+                df = pd.DataFrame(data['content'])
+                
+                # Añadir transformaciones si es necesario
+                if 'probabilidad' in df.columns:
+                    df['probabilidad_%'] = [str(i)+"%" for i in (df['probabilidad'] * 100).round(2)]
+                if 'fecha' in df.columns:
+                    df['fecha'] = pd.to_datetime(df['fecha']).dt.strftime("%d/%m/%Y")
+
+                new_df = df.drop('probabilidad', axis=1)
+                st.session_state.tabla = new_df[["id", "comentario", "prevision", "probabilidad_%", "idioma", "fecha"]]
+            else:
+                st.session_state.tabla = pd.DataFrame()
+        else:
+            st.error(f"Error al obtener datos: {response.status_code}")
+            st.session_state.tabla = pd.DataFrame()
+    except Exception as e:
+        st.error(f"Error de conexión: {str(e)}")
+        st.session_state.tabla = pd.DataFrame()
+
+def manejo_page():
+    seleccion = st.session_state.control_pag
+    primera = st.session_state.primero
+    ultima = st.session_state.ultimo
+    total = st.session_state.total_page - 1
+
+    pagina_anterior = st.session_state.actual_page
+
+    # Manejo de paginas
+    if seleccion == "<" and not(primera):
+        st.session_state.actual_page -= 1
+    elif seleccion == "\>" and not(ultima):
+        st.session_state.actual_page += 1
+    elif seleccion == "<<" and not(primera):
+        st.session_state.actual_page = 0
+    elif seleccion == "\>>" and not(ultima):
+        st.session_state.actual_page = total
+    
+    if pagina_anterior != st.session_state.actual_page:
+        obtener_datos()
+
+def eliminar_comentario():
+    try:
+        indices = st.session_state.filas_eliminar
+        df = st.session_state.tabla
+
+        if not indices.empty:
+            for i in indices:
+                # Llamada a la api
+                response = requests.delete(
+                    f"http://localhost:8080/predict/{df['id'][i]}"
+                )
+                if response.status_code != 204:
+                    st.error(f"Error {response.status_code}: {response.json()[0]['error']}")
+                    return False
+
+            # Reinicia las variables de sesion
+            st.session_state.filas_eliminar = []
+            obtener_datos()
+            st.session_state.actualizado = False
+
+            # Manejo de paginas
+            if st.session_state.actual_page >= st.session_state.total_page:
+                st.session_state.actual_page = st.session_state.total_page-1
+
+            # Reinicia el main
+            st.rerun()
+    except Exception as e:
+        st.error(f"Error: {e}")
+
+def mostar_historial():
+    # Muesta la tabla
+    df = st.session_state.tabla.copy()
+    if not df.empty:
+        # st.dataframe(df, use_container_width=True)
+        df['eliminar'] = False
+
+        edited_df = st.data_editor(
+            df,
+            use_container_width=True,
+            num_rows="fixed"
+        )
+        filas_eliminar = edited_df[edited_df["eliminar"]].index
+
+        if not filas_eliminar.empty:
+            st.session_state.filas_eliminar = filas_eliminar
+
+        if st.button(label="Eliminar", icon="🗑️", key="eliminar",  disabled=True if filas_eliminar.empty else False):
+            eliminar_comentario()
+    else:
+        st.info("No hay datos disponibles")
+
+    st.markdown(
+        """
+        <style>
+            .stButtonGroup {
+                display: flex; 
+                justify-content: center; 
+                align-items: center;
+            }
+        </style>
+        """, unsafe_allow_html=True
+    )
+    # Paginacion en pantalla
+    st.segmented_control(label=" ", options=["<<", "<", str(st.session_state.actual_page+1), "\>", "\>>"], key="control_pag", on_change=manejo_page)
+    st.markdown(
+        f"""
+        <div style="display: flex; justify-content: center; align-items: center;">
+            Página {st.session_state.actual_page+1} de {st.session_state.total_page}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+def main():
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+    init_session()
+
+    st.set_page_config(page_title="Histórico", layout="wide", page_icon=":clipboard:")
+
+    generar_menu()
+
+    # --- ESTILOS CSS PERSONALIZADOS ---
+    estilo()
+
+    st.title("Datos Históricos")
+    with st.container():
+        col1, col2, col3 = st.columns([1, 8, 1])
+        with col2:
+
+            st.write("# Histórico")
+
+            if st.session_state.tabla.empty:
+                obtener_datos()
+
+            if not st.session_state.actualizado:
+                mostar_historial()
+
+if __name__ == "__main__":
+    main()

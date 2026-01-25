@@ -22,6 +22,10 @@ public class Prediction {
     private String prevision;
     private float probabilidad;
     private String comentario;
+    @Column(name = "comentario_limpio")
+    private String comentarioLimpio;
+    @Column(name = "idioma")
+    @Enumerated(EnumType.STRING)
     private Language language;
     private LocalDateTime fecha;
 
@@ -30,6 +34,7 @@ public class Prediction {
         this.prevision = "Pendiente";
         this.probabilidad = 0f;
         this.comentario = json.text();
+        this.comentarioLimpio = json.cleanText();
         this.language = json.model();
         this.fecha = LocalDateTime.now();
     }

@@ -101,7 +101,7 @@ REPO/
 <img src="https://i.imgur.com/ma7pg0u.png" alt="Modelo SGD" width="300">
 
 ## Porcentajes de predicción
-<img src="[h](https://i.imgur.com/foWGLrS.png)" alt="Modelo SGD" width="300">
+<img src="https://i.imgur.com/foWGLrS.png" alt="Modelo SGD" width="300">
 
 
 ## falsos positivos y negativos

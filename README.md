@@ -76,6 +76,9 @@ REPO/
 - nltk
 - emoji
 
+# Web
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-Fnpv2fOMsA?si=G2gR6Ij9rIlHvwEc&amp;clip=Ugkxt8KEfJ601bY2rPP0mn3AbXuyQNvDihCn&amp;clipt=ELDhDBjI1g0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 # Modelo Seleccionado en PORTUGUES : SGDClassifier como Regresión Logística 
 
 ## Modelo SGD

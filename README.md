@@ -95,5 +95,5 @@ REPO-ROOT/
 # Porcentajes de predicción
 ![Porcentaje de Predicción ](https://i.imgur.com/foWGLrS.png) 
 
-# falsos positivos y negativos
+# Falsos positivos y negativos
 ![Curva ROC AUC 0.834](https://i.imgur.com/MYb6tFD.png)

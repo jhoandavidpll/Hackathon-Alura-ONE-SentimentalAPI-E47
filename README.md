@@ -78,29 +78,32 @@ REPO/
 
 # Modelo Seleccionado en PORTUGUES : SGDClassifier como Regresión Logística 
 
-# Modelo SGD
-![Modelo SGD](https://i.imgur.com/nHfsHRh.png)
+## Modelo SGD
+<img src="https://i.imgur.com/nHfsHRh.png" alt="Modelo SGD" width="300">
 
-# Distribución de negativos y positivos
-![Distribución Positivos y negativos](https://i.imgur.com/SYL6oqZ.png)
+## Distribución de negativos y positivos
+<img src="https://i.imgur.com/nHfsHRh.png](https://i.imgur.com/SYL6oqZ.png" alt="Modelo SGD" width="300">
 
-# Porcentajes de predicción
-![Porcentaje de Predicción ](https://i.imgur.com/JGKb6lj.png) 
+## Porcentajes de predicción
+<img src="https://i.imgur.com/nHfsHRh.png](https://i.imgur.com/JGKb6lj.png" alt="Modelo SGD" width="300">
 
-# falsos positivos y negativos
-![Curva ROC AUC 0.834](https://i.imgur.com/YYHpSqH.png)
 
+## Falsos positivos y negativos
+<img src="https://i.imgur.com/YYHpSqH.png" alt="Modelo SGD" width="300">
 
 # Modelo Seleccionado en ESPAÑOL: SGDClassifier como Regresión Logística 
 
-# Modelo SGD
-![Modelo SGD](https://i.imgur.com/pKarVla.png)
+## Modelo SGD
+<img src="https://i.imgur.com/pKarVla.png" alt="Modelo SGD" width="300">
 
-# Distribución de negativos y positivos
-![Distribución Positivos y negativos](https://i.imgur.com/ma7pg0u.png)
 
-# Porcentajes de predicción
-![Porcentaje de Predicción ](https://i.imgur.com/foWGLrS.png) 
+## Distribución de negativos y positivos
+<img src="https://i.imgur.com/ma7pg0u.png" alt="Modelo SGD" width="300">
 
-# falsos positivos y negativos
-![Curva ROC AUC 0.834](https://i.imgur.com/MYb6tFD.png)
+## Porcentajes de predicción
+<img src="[h](https://i.imgur.com/foWGLrS.png)" alt="Modelo SGD" width="300">
+
+
+## falsos positivos y negativos
+<img src="https://i.imgur.com/MYb6tFD.png" alt="Modelo SGD" width="300">
+

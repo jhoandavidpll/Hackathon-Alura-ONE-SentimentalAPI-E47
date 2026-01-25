@@ -98,7 +98,6 @@ public class PredictionController {
             for (int i = 0; i < header.length; i++) {
                 if (header[i].trim().equalsIgnoreCase("comentarios")) {
                     headerIndex = i;
-
                 }
                 if (header[i].trim().equalsIgnoreCase("limpios")) {
                     cleanComentIndex = i;

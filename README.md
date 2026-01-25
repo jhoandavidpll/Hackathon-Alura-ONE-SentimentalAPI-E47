@@ -149,19 +149,25 @@ En caso de correr la API de forma local la variable de entorno DB_HOST se le deb
 
 ## Endpoints principales
 
-| Método | Endpoint            | Descripción                  |
-|-------|---------------------|------------------------------|
-| POST  | /api/auth/login     | Autenticación de usuario     |
-| POST  | /api/images/upload  | Subida de imagen de cultivo  |
-| GET   | /api/predictions    | Obtener predicciones         |
+| Método | Endpoint             | Descripción                                    |
+|--------|----------------------|------------------------------------------------|
+| POST   | /predict             | Clasificación simple (único comentario)        |
+| POST   | /predict/csv         | Clasificación en batch (archivo csv)           |
+| GET    | /predict/            | Listado de todas las clasificaciones           |
+| GET    | /predict/{id}        | Obtiene la clasificación del id especificado   |
+| GET    | /predict/stats       | Cantidad de comentarios por sentimiento        |
+| GET    | /predict/stats/words | Top 5 palabras más repetidas                   |
+| DELETE | /predict/{id}        | Elimina la clasificación con el id especificado|
 
 ## Consumo de la API
 
 ### Clasificación simple
 
-URL: localhost:8080/predict
+- **Método:** POST
 
-#### Envia
+- **Endpoint:** /predict
+
+#### Envía
 ```
 {
 	"comentario": "Odio trabajar en domingo",
@@ -180,3 +186,279 @@ URL: localhost:8080/predict
 	"fecha": "2026-01-25T15:33:47.2695179"
 }
 ```
+
+### Clasificación en batch
+
+- **Método:** POST
+
+- **Endpoint:** /predict/csv
+
+#### Envía
+
+#### Recibe
+```
+[
+	{
+		"id": 378,
+		"comentario": "Fico muito triste com a forma como a sociedade está hoje.",
+		"prevision": "Negativo",
+		"probabilidad": 0.8674735,
+		"idioma": "PT",
+		"fecha": "2026-01-25T17:41:15.2761158"
+	},
+	{
+		"id": 379,
+		"comentario": "A organização desta sociedade é terrível.",
+		"prevision": "Negativo",
+		"probabilidad": 0.73947096,
+		"idioma": "PT",
+		"fecha": "2026-01-25T17:41:15.2915533"
+	},
+	{
+		"id": 380,
+		"comentario": "Considero a série incrível, a melhor que já vi.",
+		"prevision": "Positivo",
+		"probabilidad": 0.91232455,
+		"idioma": "PT",
+		"fecha": "2026-01-25T17:41:15.297732"
+	},
+	{
+		"id": 381,
+		"comentario": "Eu amo como o cabelo dela brilha assim.",
+		"prevision": "Positivo",
+		"probabilidad": 0.81699395,
+		"idioma": "PT",
+		"fecha": "2026-01-25T17:41:15.3036343"
+	}
+]
+```
+#### Archivo
+ejemplo.csv
+```
+comentarios, limpios
+"Fico muito triste com a forma como a sociedade está hoje.", "fico muito triste forma sociedade esta hoje."
+"A organização desta sociedade é terrível.","a organização desta sociedade terrivel."
+"Considero a série incrível, a melhor que já vi.","considero serie incriveli melhori ja vi."
+"Eu amo como o cabelo dela brilha assim.","eu amo cabelo dela brilha assim."
+```
+
+### Listado de clasificaciones
+
+- **Método:** GET
+
+- **Endpoint:** /predict
+
+#### Recibe
+```
+{
+	"content": [
+		{
+			"id": 333,
+			"comentario": "Este es el mejor análizador de sentimientos!!! 🎉",
+			"prevision": "Positivo",
+			"probabilidad": 1.1294278,
+			"idioma": "ES",
+			"fecha": "2026-01-23T14:30:20.355075"
+		},
+		{
+			"id": 334,
+			"comentario": "Gracias a AluraLatam, Oracle, a los patrocinadores y a todo el equipo de organización por esta oportunidad 😍❤️ ",
+			"prevision": "Positivo",
+			"probabilidad": 0.1668056,
+			"idioma": "ES",
+			"fecha": "2026-01-23T14:30:20.369433"
+		},
+		{
+			"id": 335,
+			"comentario": "Primavera es la estación que más me desespera, esta alergía no me deja respirar.",
+			"prevision": "Negativo",
+			"probabilidad": 2.5198066,
+			"idioma": "ES",
+			"fecha": "2026-01-23T14:30:20.376229"
+		},
+		{
+			"id": 352,
+			"comentario": "Fico muito triste com a forma como a sociedade está hoje.",
+			"prevision": "Negativo",
+			"probabilidad": 0.8674735,
+			"idioma": "PT",
+			"fecha": "2026-01-23T14:40:23.953816"
+		},
+		{
+			"id": 353,
+			"comentario": "A organização desta sociedade é terrível.",
+			"prevision": "Negativo",
+			"probabilidad": 0.73947096,
+			"idioma": "PT",
+			"fecha": "2026-01-23T14:40:23.988173"
+		},
+		{
+			"id": 354,
+			"comentario": "Considero a série incrível, a melhor que já vi.",
+			"prevision": "Positivo",
+			"probabilidad": 0.91232455,
+			"idioma": "PT",
+			"fecha": "2026-01-23T14:40:23.995212"
+		},
+		{
+			"id": 355,
+			"comentario": "Eu amo como o cabelo dela brilha assim.",
+			"prevision": "Positivo",
+			"probabilidad": 0.81699395,
+			"idioma": "PT",
+			"fecha": "2026-01-23T14:40:24.000856"
+		},
+		{
+			"id": 356,
+			"comentario": "Fico muito triste com a forma como a sociedade está hoje.",
+			"prevision": "Negativo",
+			"probabilidad": 0.8674735,
+			"idioma": "PT",
+			"fecha": "2026-01-23T14:40:24.007202"
+		},
+		{
+			"id": 357,
+			"comentario": "A organização desta sociedade é terrível.",
+			"prevision": "Negativo",
+			"probabilidad": 0.73947096,
+			"idioma": "PT",
+			"fecha": "2026-01-23T14:40:24.013302"
+		},
+		{
+			"id": 358,
+			"comentario": "Considero a série incrível, a melhor que já vi.",
+			"prevision": "Positivo",
+			"probabilidad": 0.91232455,
+			"idioma": "PT",
+			"fecha": "2026-01-23T14:40:24.018659"
+		}
+	],
+	"pageable": {
+		"pageNumber": 0,
+		"pageSize": 10,
+		"sort": {
+			"empty": false,
+			"sorted": true,
+			"unsorted": false
+		},
+		"offset": 0,
+		"unpaged": false,
+		"paged": true
+	},
+	"last": false,
+	"totalElements": 29,
+	"totalPages": 3,
+	"size": 10,
+	"number": 0,
+	"sort": {
+		"empty": false,
+		"sorted": true,
+		"unsorted": false
+	},
+	"numberOfElements": 10,
+	"first": true,
+	"empty": false
+}
+```
+
+### Clasificación del id especificado
+
+- **Método:** GET
+
+- **Endpoint:** /predict/{id}
+
+Ejemplo: /predict/334
+
+#### Recibe
+```
+{
+	"id": 334,
+	"comentario": "Gracias a AluraLatam, Oracle, a los patrocinadores y a todo el equipo de organización por esta oportunidad 😍❤️ ",
+	"prevision": "Positivo",
+	"probabilidad": 0.1668056,
+	"idioma": "ES",
+	"fecha": "2026-01-23T14:30:20.369433"
+}
+```
+
+### Cantidad de comentarios por sentimiento
+
+- **Método:** GET
+
+- **Endpoint:** /predict/stats
+
+- **Parametros:** El "idioma" es obligatorio, las fechas son opcionales, pero si se pone una de las dos es obligatorio que la otra exista, y la fecha de inicio sea antes que la fecha fin. Los idiomas disponibles son "ES" para español y "PT" para portugués. El formato de la fecha debe de ser aaaa-mm-dd.
+
+#### Envía
+```
+{
+	"idioma" : "ES",
+	"fecha_inicio" : "2026-01-12",
+	"fecha_fin" : "2026-01-26"
+}
+```
+#### Recibe
+```
+[
+	{
+		"palabra": "Negativo",
+		"frecuencia": 5
+	},
+	{
+		"palabra": "Positivo",
+		"frecuencia": 8
+	}
+]
+```
+
+### Top 5 palabras más repetidas
+
+- **Método:** GET
+
+- **Endpoint:** /predict/stats/words
+
+- **Parametros:** El "idioma" y la "clasificacion" son obligatorios, las fechas son opcionales, pero si se pone una de las dos es obligatorio que la otra exista, y la fecha de inicio sea antes que la fecha fin. Los idiomas disponibles son "ES" para español y "PT" para portugués. Las clasificaciones disponibles son "Positivo" y "Negativo". El formato de la fecha debe de ser aaaa-mm-dd.
+#### Envía
+```
+{
+	"clasificacion" : "Positivo",
+	"idioma" : "ES",
+	"fecha_inicio" : "2026-01-23",
+	"fecha_fin" : "2026-01-23"
+}
+```
+#### Recibe
+```
+[
+	{
+		"palabra": "corazon",
+		"frecuencia": 4
+	},
+	{
+		"palabra": "analizador",
+		"frecuencia": 2
+	},
+	{
+		"palabra": "aluralatam",
+		"frecuencia": 2
+	},
+	{
+		"palabra": "ojos",
+		"frecuencia": 2
+	},
+	{
+		"palabra": "sentimientos",
+		"frecuencia": 2
+	}
+]
+```
+
+### Clasificación simple
+
+- **Método:** DELETE
+
+- **Endpoint:** /predict/{id}
+
+Ejemplo: /predict/352
+
+Estatus respuesta: 204 No content

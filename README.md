@@ -6,8 +6,10 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17.5-gray?logo=postgresql)
 ![Colab](https://img.shields.io/badge/Colab-gray?logo=googlecolab)
 
-![Notebook para modelo en Español]([(https://img.shields.io/badge/Colab-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_Analisis_de_Sentimientos_Completo_Espa%C3%B1ol_15_Enero.ipynb)
-![Notebook para modelo en Portugués]([(https://img.shields.io/badge/Colab-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_An%C3%A1lisis_de_Sentimientos_Completo_Portugues_15_Ene.ipynb)
+## Notebook del modelo en Español
+![![Colab](https://img.shields.io/badge/Colab-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_Analisis_de_Sentimientos_Completo_Espa%C3%B1ol_15_Enero.ipynb)
+## Notebook del modelo en Portugés
+![![Colab](https://img.shields.io/badge/Colab-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_An%C3%A1lisis_de_Sentimientos_Completo_Portugues_15_Ene.ipynb)
 
 
 ## Organizadores

@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from menu import generar_menu
 from funciones import *
 
-st.set_page_config(page_title="Acerca", layout="wide")
+st.set_page_config(page_title="Acerca", layout="wide", page_icon=":busts_in_silhouette:")
 
 generar_menu()
 # --- ESTILOS CSS PERSONALIZADOS ---
@@ -26,9 +26,22 @@ enlaces = st.container()
 
 
 ### Contenido principal de la aplicación
-# Contenido para el titulo
-titulo.title("Sobre el Proyecto")
-titulo.header("\"Detectamos problemas y promovemos oportunidades de mejora\"")
+# URL de tu imagen
+url_logo = "https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/logo_BEE.png"
+
+# Ajustamos las columnas para un tamaño mediano
+# la columna central se vuelve más estrecha, reduciendo el tamaño de la imagen.
+# Imagen centrada, tamaño 350px y esquinas redondeadas
+titulo.markdown(
+    f"""
+    <div style="display: flex; justify-content: center;">
+        <img src="{url_logo}" width="550" style="border-radius: 100px; box-shadow: 0px 10px 10px rgba(0,0,0,0.1);">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+#titulo.header("Inteligencia Colectiva para Decisiones individuales")
 titulo.write("---")
 
 #Seccion: Presentacion del Proyecto
@@ -72,7 +85,7 @@ descripcion.write("""
     </style>
     <div class='description-box'>
         <div class='description-text'>
-            <p>SentimentAPI es una aplicación de análisis de sentimientos que convierte comentarios de texto en insights claros y accionables, de forma rápida, sencilla y accesible.</p>
+            <p>Nuestra SentimentAPI, entiende las necesidades y frustraciones de los clientes. Trasformamos el ruido de los comentarios para que la empresa dejen de adivinar y empiece a conectar.</p>
         </div>
         <div class='description-features'>
             <ul>
@@ -229,10 +242,20 @@ mapa.write("""
     <style>
 
     </style>
-    <h1>Roadmap</h1>
+    <h1>Infraestructura</h1>
 
 """,unsafe_allow_html=True)
 
+url_infraestructura = 'https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/Infraestrucura_sentimentAPI.png'
+
+mapa.markdown(
+    f"""
+    <div style="display: flex; justify-content: center;">
+        <img src="{url_infraestructura}" width="800" style="border-radius: 20px; box-shadow: 0px 10px 10px rgba(0,0,0,0.1);">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 mapa.write("---")
 
     #Seccion: Presentacion del Equipo
@@ -252,15 +275,7 @@ personas = [
         'linkedin': 'https://www.linkedin.com/in/mitchel-poblete/',
         'github': 'https://github.com/MiitchPs',
         'foto': 'https://avatars.githubusercontent.com/u/105990185?v=4',
-        'descripcion': 'Analista Pogramador, certificado en Data Science y OCI '
-    },
-    {
-        'nombre': 'Nydia Naomi Olmos Romero',
-        'rol': 'Backend',
-        'linkedin': 'http://www.linkedin.com/in/nydia-olmos',
-        'github': 'https://github.com/NydiaOlmos',
-        'foto': 'https://avatars.githubusercontent.com/u/111654273?v=4',
-        'descripcion': 'Ingeniera en Computación Inteligente, especializada en la ciencia de datos y aprendizaje de máquina, con alto interés en el computo en la nube y back end'
+        'descripcion': 'Analista Pogramador - Cert.DataScience - Cert.Oracle Cloud Infrastructure OCI '
     },
     {
         'nombre': 'Jhoan David Pillapa Llerena',
@@ -268,7 +283,55 @@ personas = [
         'linkedin': 'https://www.linkedin.com/in/jhoandavidpll/',
         'github': 'https://github.com/jhoandavidpll',
         'foto': 'https://avatars.githubusercontent.com/u/66537133?s=400&u=82d981fa4f723616d5809b2fc3f84999b8d29fbe&v=4',
-        'descripcion': 'Experto en transformar grandes volúmenes de datos en insights accionables para acelerar el crecimiento del negocio. Especialista en automatización de reportes (Power BI/Python).'
+        'descripcion': 'Ingeniero en Electrónica, Telecomunicaciones y Redes. Data Science, experto en transformar grandes volúmenes de datos en insights.'
+    },
+        {
+        'nombre': 'Andres Felipe Cubillos Hurtado',
+        'rol': 'Data Science',
+        'linkedin': 'https://www.linkedin.com/in/andres-felipe-cubillos-hurtado-5a03a4189/',
+        'github': 'https://github.com/andrewcubillos',
+        'foto': 'https://avatars.githubusercontent.com/u/32993313?s=400&u=71f20d47c8bdce83b4cb965eb9f7d3d4b540c231&v=4',
+        'descripcion': 'Ingeniero de Sistema. Análisis de datos con enfoqe en monitoreo y ciencia de datos.'
+    },
+        {
+        'nombre': 'Andrés Huerta Salgado',
+        'rol': 'Data Science',
+        'linkedin': 'https://www.linkedin.com/in/andres-huerta-salgado-129474338/',
+        'github': 'https://github.com/AHS30',
+        'foto': 'https://avatars.githubusercontent.com/u/108943856?v=4',
+        'descripcion': 'Estudiante de Sistemas Computacionales'
+    },
+        {
+        'nombre': 'Jeferson José Peña Curvelo',
+        'rol': 'Data Science',
+        'linkedin': 'https://www.linkedin.com/in/jefersonjpc/',
+        'github': 'https://github.com/JeffPeC',
+        'foto': 'https://avatars.githubusercontent.com/u/201787396?s=400&u=ea59ecbe2fbb6456ff86fb04719bfdcd5f1636a4&v=4',
+        'descripcion': 'Analista de Sistemas, Informático, actualmente enfocado en expandir mis conocimientos en Data Science.'
+    },
+        {
+        'nombre': 'Nydia Naomi Olmos Romero',
+        'rol': 'Backend',
+        'linkedin': 'http://www.linkedin.com/in/nydia-olmos',
+        'github': 'https://github.com/NydiaOlmos',
+        'foto': 'https://avatars.githubusercontent.com/u/111654273?v=4',
+        'descripcion': 'Ingeniera en Computación Inteligente, especializada en la ciencia de datos y aprendizaje de máquina, con alto interés en el computo en la nube y back end'
+    },
+        {
+        'nombre': 'Brandon Omar Ortiz Gutierrez ',
+        'rol': 'Backend',
+        'linkedin': 'https://www.linkedin.com/in/brandon-ortiz-back',
+        'github': 'https://github.com/brandon-informatico',
+        'foto': 'https://avatars.githubusercontent.com/u/193290626?v=4',
+        'descripcion': 'Ingeniero en Informática enfocado en back-end, BD relacionales, manejo de soluciones en la nube, con gran interes en la ingeniería de datos.'
+    },
+            {
+        'nombre': 'Christian',
+        'rol': 'Backend',
+        'linkedin': 'http://www.linkedin.com/in/cristian-larios',
+        'github': 'https://github.com/Fas5ter',
+        'foto': 'https://avatars.githubusercontent.com/u/96441511?v=4',
+        'descripcion': 'Ingeniero en Computación Inteligente, Arquitecto de Soluciones en la Nube, Científico de Datos y Desarrollador de Software Full Stack'
     }
 ]
 
@@ -467,7 +530,7 @@ herramientas.write("""
         font-weight:600;
     }
     </style>
-    <h1>Stack Tecnologico</h1>
+    <h1>Stack Tecnológico</h1>
     <div class="tech-grid">
         <div>
             <a href="https://www.java.com/es/">

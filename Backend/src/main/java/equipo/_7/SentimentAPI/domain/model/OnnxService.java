@@ -50,12 +50,7 @@ public class OnnxService {
 
     public PredictionResult predict(String text) throws OrtException {
 
-        String processedText = text;
-        if (currentModelLanguage == Language.PT) {
-            processedText = preprocessForPortugueseModel(text);
-        }
-
-        String[][] inputArray = new String[][]{{processedText}};
+        String[][] inputArray = new String[][]{{text}};
 
         try (OnnxTensor tensor = OnnxTensor.createTensor(env, inputArray);
              OrtSession.Result result = session.run(Collections.singletonMap("input_text", tensor))) {
@@ -101,24 +96,6 @@ public class OnnxService {
             System.out.println("DEBUG: Label=" + winningLabel + ", Probability=" + winningProb);
             return new PredictionResult(winningLabel, winningProb);
         }
-    }
-
-    private String preprocessForPortugueseModel(String text) {
-        // Eliminar caracteres Unicode problemáticos (emojis)
-        // Esto es un workaround temporal mientras se arregla el modelo
-        if (text == null) return "";
-
-        // Eliminar emojis y caracteres Unicode problemáticos
-        String cleaned = text.replaceAll("[\\x{1F300}-\\x{1F9FF}\\x{1F600}-\\x{1F64F}]", "");
-
-        // También eliminar cualquier otro carácter de 4 bytes (UTF-16 surrogate pairs)
-        cleaned = cleaned.replaceAll("[\\uD800-\\uDBFF][\\uDC00-\\uDFFF]", "");
-
-        if (!cleaned.equals(text)) {
-            System.out.println("DEBUG: Texto preprocesado para modelo PT (emojis removidos)");
-        }
-
-        return cleaned;
     }
 
     private float[] softmax(float[] logits) {

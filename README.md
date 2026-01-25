@@ -3,6 +3,16 @@
 # Hackathon-Alura-ONE-SentimentalAPI-E47
 Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos 
 
+![Java](https://img.shields.io/badge/java-21.0.8-white?logo=java)
+![Python](https://img.shields.io/badge/python-3.13.9-blue?logo=python)
+![Docker](https://img.shields.io/badge/docker-29.1.3-0db7ed?logo=docker)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17.5-gray?logo=postgresql)
+![Colab](https://img.shields.io/badge/Colab-gray?logo=googlecolab)
+
+[![Colab Español](https://img.shields.io/badge/Colab_Español-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_Analisis_de_Sentimientos_Completo_Espa%C3%B1ol_15_Enero.ipynb)
+[![Colab](https://img.shields.io/badge/Colab_Portugués-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_An%C3%A1lisis_de_Sentimientos_Completo_Portugues_15_Ene.ipynb)
+
+
 ## Organizadores
 <p style="display: flex; justify-content: space-between;">
   <img src="https://nocountry.tech/one.png" width="20%" />
@@ -26,7 +36,7 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 ## Estructura del Proyecto
 
 ```text
-REPO-ROOT/
+REPO/
 │
 ├── Backend/                 # (Squad Java Spring Boot)
 │   ├── src/                 # Código fuente Java
@@ -100,6 +110,73 @@ REPO-ROOT/
 
 # Backend 
 
-Api desarrollada con Java 21.0.8 con Spring Boot en su versión 3.3.9, implementra una base de datos PostgreSQL en su versión 17.5 contenerizada en Docker. Hace uso de Flayway para migraciones y manejo de la base de datos. Implementa el dos modelos capaces de clasificar sentimientos en base a comentarios extraidos de la red social Twitter a través de ONNX.
+La API desarrollada con Java 21.0.8 con Spring Boot en su versión 3.3.9, implementa una base de datos PostgreSQL en su versión 17.5 contenerizada en Docker. Hace uso de Flyway para migraciones y manejo de la base de datos. Implementa el dos modelos capaces de clasificar sentimientos en base a comentarios extraídos de la red social Twitter a través de ONNX.
 
 La API se basa en un CRUD básico en el cual permite hacer clasificaciones simples (un único comentario), clasificaciones en batch (a través de archivos csv), listar todas las clasificaciones existentes en la base de datos, eliminar comentario analizado de la base de datos, listar el top 5 palabras más repetidas según el idioma y el sentimiento, y la cantidad de comentarios negativos y positivos que existen según el idioma.
+
+## Tecnologías
+
+- spring-boot
+- jakarta
+- flywaydb
+- opencsv
+- postgresql
+- spring-boot-docker-compose
+- org.springframework.ai
+- spring-boot-starter-validation
+- lombok
+
+## Configuración del proyecto
+
+Para poder compilar y ejecutar el proyecto sin muchas complicaciones es necesario ya sea o bien definir las variables de entorno, agregando un archivo . envv o bien modificar los archivos application.properties y compose.yaml. Las variables de entrono implementadas son:
+
+- DB_HOST
+- DB_USER
+- DB_PASSWORD
+
+En caso de correr la API de forma local la variable de entorno DB_HOST se le debe de asignar el valor localhost, el resto de las variables dependen de la configuración que se tenga en el postgreSQL.
+
+## Ejecución del proyecto
+
+1. Clona el repositorio
+  ```git clone https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47.git```
+2. Entra al directorio del backend:
+  ```cd Hackathon-Alura-ONE-SentimentalAPI-E47/Backend```
+3. Compila el proyecto en la carpeta /target:
+  ```mvn clean package -DskipTests```
+4. Ejecuta la aplicación en la ruta raíz del backend:
+  ```mvn spring-boot:run```
+
+## Endpoints principales
+
+| Método | Endpoint            | Descripción                  |
+|-------|---------------------|------------------------------|
+| POST  | /api/auth/login     | Autenticación de usuario     |
+| POST  | /api/images/upload  | Subida de imagen de cultivo  |
+| GET   | /api/predictions    | Obtener predicciones         |
+
+## Consumo de la API
+
+### Clasificación simple
+
+URL: localhost:8080/predict
+
+#### Envia
+```
+{
+	"comentario": "Odio trabajar en domingo",
+	"comentario_limpio": "odio trabajar domingo",
+	"modelo": "ES"
+}
+```
+#### Recibe
+```
+{
+	"id": 377,
+	"comentario": "Odio trabajar en domingo",
+	"prevision": "Negativo",
+	"probabilidad": 0.3240935,
+	"idioma": "ES",
+	"fecha": "2026-01-25T15:33:47.2695179"
+}
+```

@@ -1,0 +1,1 @@
+ALTER TABLE predicciones ADD comentario_limpio TEXT NOT NULL DEFAULT '';

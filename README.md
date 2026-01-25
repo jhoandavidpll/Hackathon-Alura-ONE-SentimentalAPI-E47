@@ -194,6 +194,7 @@ En caso de correr la API de forma local la variable de entorno DB_HOST se le deb
 - **Endpoint:** /predict/csv
 
 #### Envía
+<img width="538" height="233" alt="image" src="https://github.com/user-attachments/assets/e8aea7d3-144c-4b13-a1fd-4557b6fee29b" />
 
 #### Recibe
 ```

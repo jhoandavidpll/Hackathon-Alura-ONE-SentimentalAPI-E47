@@ -564,7 +564,7 @@ Esta primera vista corresponde a la clasificación simple de nuestra API. Aquí 
 
 Las posibilidades de respuestas en la clasificación son de Negativos o Positivos, además de añadir el porcentaje de precisión obtenido, y el idioma seleccionado.
 
---------------------------ACÁ VA EL VIDEO NAO---------------------------
+![Inicio]()
 
 ### Batching
 
@@ -584,7 +584,7 @@ Se puedo borrar o modificar el contenido base del ejemplo.csv, lo importante es 
 
 Asegúrese de que el idioma seleccionado coincida con el idioma en el que se escribieron los comentarios del archivo para su correcta clasificación.
 
---------------------------ACÁ VA EL VIDEO NAO---------------------------
+![Batching]()
 
 ### Histórico
 
@@ -592,7 +592,7 @@ El histórico presenta todos los registros existentes en la base de datos. Adici
 
 >El eliminado es permanente, no es posible recuperar los registros eliminados.
 
---------------------------ACÁ VA EL VIDEO NAO---------------------------
+![Histórico]()
 
 ### Estadísticas
 
@@ -601,13 +601,13 @@ En esta vista podemos ver las estadísticas generales de todos los análisis rea
 Nótese que no se envía una nueva petición a menos que se pongan ambas fechas. En caso de colocar una fecha de inicio posterior a la fecha fin, internamente se invierten para evitar romper la API. En caso de que no existan registros en el periodo especificado se indicará y no se mostrará ningún gráfico.
 
 
---------------------------ACÁ VA EL VIDEO NAO---------------------------
+![Estadísticas]()
 
 ### Acerca de nosotros
 
 Esta vista es para información adicional referente al proyecto así cómo información de los colaboradores que participaron en el desarrollo del mismo.
 
---------------------------ACÁ VA EL VIDEO NAO---------------------------
+![Acerca]()
 
 # Data Science
 ## Modelo Seleccionado en PORTUGUÉS: SGDClassifier como Regresión Logística

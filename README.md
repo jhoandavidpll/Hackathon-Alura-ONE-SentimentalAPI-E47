@@ -482,7 +482,7 @@ Ejemplo: /predict/352
 Estatus respuesta: 204 No content
 
 # Data Science
-## Modelo Seleccionado en PORTUGUÉS: SGDClassifier como Regresión Logística 
+## Modelo Seleccionado en PORTUGUÉS: SGDClassifier como Regresión Logística
 
 ### Modelo SGD
 <img src="https://i.imgur.com/nHfsHRh.png" alt="Modelo SGD" width="300">
@@ -497,7 +497,7 @@ Estatus respuesta: 204 No content
 <img src="https://i.imgur.com/YYHpSqH.png" alt="Modelo SGD" width="300">
 
 
-## Modelo Seleccionado en ESPAÑOL: SGDClassifier como Regresión Logística 
+## Modelo Seleccionado en ESPAÑOL: SGDClassifier como Regresión Logística
 
 ### Modelo SGD
 <img src="https://i.imgur.com/pKarVla.png" alt="Modelo SGD" width="300">

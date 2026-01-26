@@ -40,7 +40,6 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 * [Datos generales](#Datos-generales)
     * [Integrantes del Proyecto](#Integrantes-del-Proyecto)
     * [Estructura del Proyecto](#Estructura-del-Proyecto)
-    * [Herramientas y versiones](#Herramientas-y-versiones)
     * [Requerimientos](#Requerimientos)
 * [Documentación Frontend](#Front)
 * [Documentación Backend](#Backend)
@@ -50,7 +49,7 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
     * [Endpoints principales](#Endpoints-principales)
     * [Consumo de la API](#Consumo-de-la-API)
 * [Documentación Data Science](#DataScience)
-    * [Modelo PORTUGUES](#Modelo-Seleccionado-en-PORTUGUES:-SGDClassifier-como-Regresión-Logística)
+    * [Modelo PORTUGUÉS](#Modelo-Seleccionado-en-PORTUGUÉS:-SGDClassifier-como-Regresión-Logística)
     * [Modelo ESPAÑOL](#Modelo-Seleccionado-en-ESPAÑOL:-SGDClassifier-como-Regresión-Logística)
 
 
@@ -82,30 +81,34 @@ REPO/
 │
 ├── Backend/                 # (Squad Java Spring Boot)
 │   ├── src/                 # Código fuente Java
-│   ├── pom.xml              # Dependencias Maven
+│   │    └── main
+│   │       └──java/equipo/_7/SentimentAPIAplication.java  # Programa principal
+│   │── pom.xml              # Dependencias Maven
 │   └── compose.yaml         # Contenedor de la base de datos
 │
+│
 ├── Frontend/                # (Squad Presentación - Streamlit)
-│   ├── app.py               # Interfaz gráfica (Python)
-│   ├── img/                 # Logos, imágenes estáticas
+│   ├── projecct              # Interfaz gráfica (Python)
+│   │    ├── Inicio.py        # Primera página para análisis individuales
+│   │    └── pages/
+│   │          ├── 1.Batching.py       # Análisis colectivo
+│   │          ├── 2.Histórico.py      # Histórico de análisis
+│   │          ├── 3.Estadísticas.py   # Estadísticas de los análisis
+│   │          └── 4.Acerca.py         # Acerca de Nosotros
 │   └── requirements.txt     # streamlit, requests
 │
 ├── Data-Science/            # (Squad Entrenamiento & Exploración)
 │   ├── Notebooks/           # Jupyter Notebooks (Zona de pruebas)
 │   ├── data/                # CSVs crudos (Raw data)
-│   └── models/              # Modelos a implementar
+│   │    ├── / spanish
+│   │    ├── / portuges      
+│   └── models/              # Serialización de los modelos
+│   │   ├── model_es.onnx    # Modelo en Español
+│   │   └── model_pt.onnx    # Modelo en Portugues
 │
 ├── .gitignore               # Ignora __pycache__, .class, .ipynb_checkpoints
 └── README.md                # Documentación general
 ```
-
-## Herramientas y versiones
-
-[![Java](https://img.shields.io/badge/java-21.0.8-white?logo=java)]
-[![Python](https://img.shields.io/badge/python-3.13.9-blue?logo=python)]
-[![Docker](https://img.shields.io/badge/docker-29.1.3-0db7ed?logo=docker)]
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17.5-gray?logo=postgresql)]
-[![Colab](https://img.shields.io/badge/Colab-gray?logo=googlecolab)]
 
 ## Requerimientos
 - streamlit
@@ -402,7 +405,7 @@ Ejemplo: /predict/334
 
 - **Endpoint:** /predict/stats
 
-- **Parametros:** El "idioma" es obligatorio, las fechas son opcionales, pero si se pone una de las dos es obligatorio que la otra exista, y la fecha de inicio sea antes que la fecha fin. Los idiomas disponibles son "ES" para español y "PT" para portugués. El formato de la fecha debe de ser aaaa-mm-dd.
+- **Parámetros:** El "idioma" es obligatorio, las fechas son opcionales, pero si se pone una de las dos es obligatorio que la otra exista, y la fecha de inicio sea antes que la fecha fin. Los idiomas disponibles son "ES" para español y "PT" para portugués. El formato de la fecha debe de ser aaaa-mm-dd.
 
 #### Envía
 ```
@@ -432,7 +435,7 @@ Ejemplo: /predict/334
 
 - **Endpoint:** /predict/stats/words
 
-- **Parametros:** El "idioma" y la "clasificacion" son obligatorios, las fechas son opcionales, pero si se pone una de las dos es obligatorio que la otra exista, y la fecha de inicio sea antes que la fecha fin. Los idiomas disponibles son "ES" para español y "PT" para portugués. Las clasificaciones disponibles son "Positivo" y "Negativo". El formato de la fecha debe de ser aaaa-mm-dd.
+- **Parámetros:** El "idioma" y la "clasificacion" son obligatorios, las fechas son opcionales, pero si se pone una de las dos es obligatorio que la otra exista, y la fecha de inicio sea antes que la fecha fin. Los idiomas disponibles son "ES" para español y "PT" para portugués. Las clasificaciones disponibles son "Positivo" y "Negativo". El formato de la fecha debe de ser aaaa-mm-dd.
 #### Envía
 ```
 {
@@ -468,7 +471,7 @@ Ejemplo: /predict/334
 ]
 ```
 
-### Clasificación simple
+### Elimina la clasificación del id especificado
 
 - **Método:** DELETE
 
@@ -479,7 +482,7 @@ Ejemplo: /predict/352
 Estatus respuesta: 204 No content
 
 # Data Science
-## Modelo Seleccionado en PORTUGUES: SGDClassifier como Regresión Logística 
+## Modelo Seleccionado en PORTUGUÉS: SGDClassifier como Regresión Logística 
 
 ### Modelo SGD
 <img src="https://i.imgur.com/nHfsHRh.png" alt="Modelo SGD" width="300">

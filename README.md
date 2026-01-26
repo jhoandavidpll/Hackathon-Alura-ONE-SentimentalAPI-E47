@@ -39,6 +39,7 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
     * [Organizadores](#Organizadores)
 * [Datos generales](#Datos-generales)
     * [Integrantes del Proyecto](#Integrantes-del-Proyecto)
+    * [Diagrama de arquitectura del sistema](#Diagrama-de-arquitectura-del-sistema)
     * [Estructura del Proyecto](#Estructura-del-Proyecto)
     * [Requerimientos](#Requerimientos)
 * [Documentación Frontend](#Front)
@@ -62,6 +63,7 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 </p>
 
 # Datos generales
+
 ## Integrantes del Proyecto
 - Jhoan David Pillapa Llerena
 - Mitchel David Poblete Santibañez
@@ -73,6 +75,9 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 - Cristian Armando Larios Bravo
 - Jeferson José Peña Curvelo
 
+## Diagrama de arquitectura del sistema
+
+![infraestructura](https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/Infraestrucura_sentimentAPI.png)
 
 ## Estructura del Proyecto
 

@@ -57,6 +57,9 @@ Para visualizar el proceso detallado que siguió el equipo de Data Science para 
     * [Consumo de la API](#Consumo-de-la-API)
 * [Documentación Frontend](#Front)
     * [Requerimientos](#Requerimientos)
+    * [Configuración del entrono](#Configuración-del-entrono)
+    * [Ejecución del proyecto Frontend](#Ejecución-del-proyecto-Frontend)
+    * [Interfaces del usuario](#Interfaces-del-usuario)
 * [Documentación Data Science](#Data-Science)
     * [Modelo PORTUGUÉS](#modelo-seleccionado-en-portugués-sgdclassifier-como-regresión-logística)
     * [Modelo ESPAÑOL](#modelo-seleccionado-en-español-sgdclassifier-como-regresión-logística)
@@ -524,7 +527,7 @@ response = requests.post(
 )
 ```
 
-## Ejecución del proyecto
+## Ejecución del proyecto Frontend
 
 Para el correcto funcionamiento del proyecto es necesario tener el servicio de la API ([Ejecución del proyecto Backend](#Ejecución-del-proyecto)) ejecutándose en segundo plano para poder enviar los request.
 

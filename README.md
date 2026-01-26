@@ -41,14 +41,14 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
     * [Integrantes del Proyecto](#Integrantes-del-Proyecto)
     * [Diagrama de arquitectura del sistema](#Diagrama-de-arquitectura-del-sistema)
     * [Estructura del Proyecto](#Estructura-del-Proyecto)
-    * [Requerimientos](#Requerimientos)
-* [Documentación Frontend](#Front)
 * [Documentación Backend](#Backend)
     * [Tecnologías](#Tecnologías)
     * [Configuración del proyecto](#Configuración-del-proyecto)
     * [Ejecución del proyecto](#Ejecución-del-proyecto)
     * [Endpoints principales](#Endpoints-principales)
     * [Consumo de la API](#Consumo-de-la-API)
+* [Documentación Frontend](#Front)
+    * [Requerimientos](#Requerimientos)
 * [Documentación Data Science](#Data-Science)
     * [Modelo PORTUGUÉS](#modelo-seleccionado-en-portugués-sgdclassifier-como-regresión-logística)
     * [Modelo ESPAÑOL](#modelo-seleccionado-en-español-sgdclassifier-como-regresión-logística)
@@ -117,21 +117,6 @@ REPO/
 └── README.md                # Documentación general
 ```
 
-## Requerimientos
-- streamlit
-- pandas
-- nltk
-- plotly
-- seaborn
-- matplotlib
-- numpy
-- scikit-learn
-- sklearn
-- textblob
-- requests
-
-# Frontend
-
 # Backend 
 
 La API desarrollada con Java 21.0.8 con Spring Boot en su versión 3.3.9, implementa una base de datos PostgreSQL en su versión 17.5 contenerizada en Docker. Hace uso de Flyway para migraciones y manejo de la base de datos. Implementa el dos modelos capaces de clasificar sentimientos en base a comentarios extraídos de la red social Twitter a través de ONNX.
@@ -140,19 +125,19 @@ La API se basa en un CRUD básico en el cual permite hacer clasificaciones simpl
 
 ## Tecnologías
 
-- spring-boot
-- jakarta
-- flywaydb
-- opencsv
-- postgresql
-- spring-boot-docker-compose
-- org.springframework.ai
-- spring-boot-starter-validation
-- lombok
+- Spring-boot
+- Jakarta
+- Flywaydb
+- Opencsv
+- Postgresql
+- Spring-boot-docker-compose
+- Springframework ai
+- Spring-boot-starter-validation
+- Lombok
 
 ## Configuración del proyecto
 
-Para poder compilar y ejecutar el proyecto sin muchas complicaciones es necesario ya sea o bien definir las variables de entorno, agregando un archivo . envv o bien modificar los archivos application.properties y compose.yaml. Las variables de entrono implementadas son:
+Para poder compilar y ejecutar el proyecto sin muchas complicaciones es necesario ya sea o bien definir las variables de entorno, agregando un archivo .env o bien modificar los archivos application.properties y compose.yaml. Las variables de entrono implementadas son:
 
 - DB_HOST
 - DB_USER
@@ -487,6 +472,131 @@ Ejemplo: /predict/334
 Ejemplo: /predict/352
 
 Estatus respuesta: 204 No content
+
+# Frontend
+
+Esta aplicación frontend fue desarrollada con streamlit como una forma visual de consumir la API REST desarrollada en Spring Boot, agregando diseño, validaciones y limpieza al uso de las diferentes funcionalidades que posee la aplicación.
+
+Permite a los usuarios hacer clasificación de comentarios simples, clasificación de comentarios a través de archivos .csv, visualización de la base de datos, eliminación de clasificaciones, visualización gráfica de estadísticas con múltiples filtros, y finalmente conocer un poco más acerca del proyecto.
+
+## Requerimientos
+- Python 3.13.9
+- Streamlit
+- Pandas
+- Nltk
+- Plotly
+- Seaborn
+- Matplotlib
+- Numpy
+- Scikit-learn
+- Sklearn
+- Textblob
+- Requests
+
+## Configuración del entrono
+
+El proyecto está previamente configurado para ejecutarse sin ningún problema a través del localhost, pero en caso de que se desee usar una ip o dominio diferente será necesario modificar los archivos de Inicio.py, 1_Batching.py, 2_Histótico.py y 3_Estadísticas.py, cambiando la url a la que se consumirá la API, solo cambie el localhost por su nuevo host.
+
+Ejemplo:
+
+**DE**
+```
+response = requests.post(
+    "http://localhost:8080/predict",
+    json=st.session_state.data_formulario,
+    headers={"Content-Type":"application/json"}
+)
+```
+**A**
+```
+response = requests.post(
+    "http://{NUEVO HOST}:8080/predict",
+    json=st.session_state.data_formulario,
+    headers={"Content-Type":"application/json"}
+)
+```
+
+## Ejecución del proyecto
+
+Para el correcto funcionamiento del proyecto es necesario tener el servicio de la API ([Ejecución del proyecto Backend](#Ejecución-del-proyecto)) ejecutándose en segundo plano para poder enviar los request.
+
+1. Crear entorno virtual dentro del directorio Frontend:
+
+    ```cd /Frontend```
+
+    ([¿Cómo se crea un entorno virtual?](#Cómo-se-crea-un-entorno-virtual?))
+2. Instalar dependencias dentro del entorno virtual:
+
+   ```pip install -r requirements.txt```
+3. Entra a la carpeta /project:
+
+    ```cd /project```
+3. Ejecutar aplicación:
+
+    ```streamlit run Inicio.py```
+
+### ¿Cómo se crea un entorno virtual?
+
+1. Crear entorno virtual ```python -m venv nombre_entorno```
+2. Activa el entorno virtual
+    - Windows: ```nombre_entorno\Scripts\activat```
+    - Linux/Mac: ```source nombre_entorno/bin/activate```
+
+>*Nota:*
+> El "nombre_entorno" lo puedes remplazar por el nombre que desees ponerle a tu entorno virtual.
+
+## Interfaces del usuario
+
+### Inicio
+
+Esta primera vista corresponde a la clasificación simple de nuestra API. Aquí elegiremos entre los dos idiomas disponibles, escribiremos un comentario y lo enviaremos a nuestra API a ser clasificado por el modelo. Se pueden añadir emojis, hashtags, arrobas, entre otros signos especiales. Ambos modelos fueron entrenados con datos extraídos de la red social Twitter, por lo que tiende a tener mayor precisión en contextos similares.
+
+Las posibilidades de respuestas en la clasificación son de Negativos o Positivos, además de añadir el porcentaje de precisión obtenido, y el idioma seleccionado.
+
+--------------------------ACÁ VA EL VIDEO NAO---------------------------
+
+### Batching
+
+La clasificación por batching permite clasificar múltiples comentarios escritos en el mismo idioma de forma simultánea. En esta vista es posible descargar un archivo csv base el cual sirve cómo referencia respecto al acomodo y formato que deben de tener los archivos para ser considerados válidos.
+
+Archivo ejemplo.csv:
+```
+comentarios
+Este es el mejor analizador de sentimientos!!! 🎉
+"Gracias a AluraLatam, Oracle, a los patrocinadores y a todo el equipo de organización por esta oportunidad 😍❤️ "
+"La primavera es la estación que más me desespera, esta alergia no me deja respirar."
+```
+
+Los comentarios pueden ser delimitados por comillas dobles o directamente por enters. Es importante mantener un comentario por renglón o se tomará como un solo comentario, siempre respetando el hecho de que están acomodados en una columna.
+
+Se puedo borrar o modificar el contenido base del ejemplo.csv, lo importante es mantener y respetar el título de la columna (comentarios) y el formato. Solo se aceptan archivos .csv.
+
+Asegúrese de que el idioma seleccionado coincida con el idioma en el que se escribieron los comentarios del archivo para su correcta clasificación.
+
+--------------------------ACÁ VA EL VIDEO NAO---------------------------
+
+### Histórico
+
+El histórico presenta todos los registros existentes en la base de datos. Adicionalmente, existe la posibilidad de eliminar los registros seleccionados. Tome en cuenta que es necesario seleccionar por lo menos un registro para habilitar el botón de eliminado.
+
+>El eliminado es permanente, no es posible recuperar los registros eliminados.
+
+--------------------------ACÁ VA EL VIDEO NAO---------------------------
+
+### Estadísticas
+
+En esta vista podemos ver las estadísticas generales de todos los análisis realizados. El primer gráfico representa las top 5 palabras que más se repiten según el sentimiento, idioma y periodo de tiempo. En caso de dejar el periodo de tiempo en blanco se tomarán todos los registros que existen en la base de datos. Por su parte, el segundo gráfico representa la cantidad de comentarios positivos y negativos de los que se tienen registro según el idioma y la fecha. Cabe resaltar que el filtro del sentimiento no afecta al gráfico.
+
+Nótese que no se envía una nueva petición a menos que se pongan ambas fechas. En caso de colocar una fecha de inicio posterior a la fecha fin, internamente se invierten para evitar romper la API. En caso de que no existan registros en el periodo especificado se indicará y no se mostrará ningún gráfico.
+
+
+--------------------------ACÁ VA EL VIDEO NAO---------------------------
+
+### Acerca de nosotros
+
+Esta vista es para información adicional referente al proyecto así cómo información de los colaboradores que participaron en el desarrollo del mismo.
+
+--------------------------ACÁ VA EL VIDEO NAO---------------------------
 
 # Data Science
 ## Modelo Seleccionado en PORTUGUÉS: SGDClassifier como Regresión Logística

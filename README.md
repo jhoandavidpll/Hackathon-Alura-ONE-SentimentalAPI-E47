@@ -12,11 +12,20 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 
 ## Links más importantes
 
-### Repositorio
+**Proyecto funcional en la nube**
 
-### Video demostración
+[![BEEsionary](https://img.shields.io/badge/BEEsionary-gray)](http://129.213.21.63:850/)
 
-### Notebooks
+
+**Repositorio**
+
+[![Repositorio](https://img.shields.io/badge/Repositorio-gray?logo=github)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/)
+
+**Video demostración**
+
+[![Video presentación](https://img.shields.io/badge/Video-gray?logo=youtube)](https://www.youtube.com/watch?v=-Fnpv2fOMsA)
+
+**Notebooks**
 
 [![Colab Español](https://img.shields.io/badge/Colab_Español-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_Analisis_de_Sentimientos_Completo_Espa%C3%B1ol_15_Enero.ipynb)
 [![Colab Portugués](https://img.shields.io/badge/Colab_Portugués-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_An%C3%A1lisis_de_Sentimientos_Completo_Portugues_15_Ene.ipynb)

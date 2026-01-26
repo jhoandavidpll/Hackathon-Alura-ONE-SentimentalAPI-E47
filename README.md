@@ -14,18 +14,26 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 
 **Proyecto funcional en la nube**
 
+El proyecto presente ha sido desplegado en una instancia OCI para su consumo público, se puede acceder a través del badge o haciendo click [aquí](http://129.213.21.63:8501/).
+
 [![BEEsionary](https://img.shields.io/badge/BEEsionary-gray?logo=google)](http://129.213.21.63:8501/)
 
 
 **Repositorio**
 
+Para acceder al repositorio en github y poner a prueba el proyecto de forma local puede hacerlo haciendo click en el badge o haciendo click [aquí](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/).
+
 [![Repositorio](https://img.shields.io/badge/Repositorio-gray?logo=github)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/)
 
 **Video demostración**
 
+Para evitar hace uso de la aplicación sin conocimientos previos o haber leído la documentación primero, acceda al link que el equipo a creado haciendo una demostración ejemplo con la aplicación. Puede acceder haciendo click en el badge o haciendo click [aquí](https://www.youtube.com/watch?v=-Fnpv2fOMsA).
+
 [![Video presentación](https://img.shields.io/badge/Video-gray?logo=youtube)](https://www.youtube.com/watch?v=-Fnpv2fOMsA)
 
 **Notebooks**
+
+Para visualizar el proceso detallado que siguió el equipo de Data Science para entrenar los modelos puede visualizar las notebooks, en dónde se explora de manera profunda los datasets implementados, así como las diferentes pruebas realizadas para seleccionar el modelo con el mejor desempeño. Puede acceder a las notbooks a través de los badges o bien haciendo click [aquí para el modelo en español](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_Analisis_de_Sentimientos_Completo_Espa%C3%B1ol_15_Enero.ipynb) o [aquí para el modelo en portugués](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_An%C3%A1lisis_de_Sentimientos_Completo_Portugues_15_Ene.ipynb).
 
 [![Colab Español](https://img.shields.io/badge/Colab_Español-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_Analisis_de_Sentimientos_Completo_Espa%C3%B1ol_15_Enero.ipynb)
 [![Colab Portugués](https://img.shields.io/badge/Colab_Portugués-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_An%C3%A1lisis_de_Sentimientos_Completo_Portugues_15_Ene.ipynb)

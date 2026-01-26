@@ -48,7 +48,7 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
     * [Ejecución del proyecto](#Ejecución-del-proyecto)
     * [Endpoints principales](#Endpoints-principales)
     * [Consumo de la API](#Consumo-de-la-API)
-* [Documentación Data Science](#DataScience)
+* [Documentación Data Science](#Data-Science)
     * [Modelo PORTUGUÉS](#Modelo-Seleccionado-en-PORTUGUÉS:-SGDClassifier-como-Regresión-Logística)
     * [Modelo ESPAÑOL](#Modelo-Seleccionado-en-ESPAÑOL:-SGDClassifier-como-Regresión-Logística)
 

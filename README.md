@@ -67,10 +67,7 @@ Para visualizar el proceso detallado que siguió el equipo de Data Science para 
 
 ## Organizadores
 <p style="display: flex; justify-content: space-between;">
-  <img src="https://nocountry.tech/one.png" width="20%" />
-  <img src="https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/alura_latam.png" width="20%" />
-  <img src="https://nocountry.tech/images/oracle-logo.webp" width="20%" />
-  <img src="https://nocountry.tech/nocountry-logo.png" width="20%" />
+  <img src="https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Frontend/img/Baner.png?raw=true   " width="100%" />
 </p>
 
 # Datos generales

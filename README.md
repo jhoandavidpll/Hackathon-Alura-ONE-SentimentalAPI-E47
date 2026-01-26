@@ -3,21 +3,54 @@
 # Hackathon-Alura-ONE-SentimentalAPI-E47
 Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos 
 
+## Stack
 ![Java](https://img.shields.io/badge/java-21.0.8-white?logo=java)
 ![Python](https://img.shields.io/badge/python-3.13.9-blue?logo=python)
 ![Docker](https://img.shields.io/badge/docker-29.1.3-0db7ed?logo=docker)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17.5-gray?logo=postgresql)
 ![Colab](https://img.shields.io/badge/Colab-gray?logo=googlecolab)
 
+## Links más importantes
+
+### Repositorio
+
+### Video demostración
+
+### Notebooks
+
 [![Colab Español](https://img.shields.io/badge/Colab_Español-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_Analisis_de_Sentimientos_Completo_Espa%C3%B1ol_15_Enero.ipynb)
-[![Colab](https://img.shields.io/badge/Colab_Portugués-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_An%C3%A1lisis_de_Sentimientos_Completo_Portugues_15_Ene.ipynb)
+[![Colab Portugués](https://img.shields.io/badge/Colab_Portugués-gray?logo=googlecolab)](https://github.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/blob/main/Data-Science/Notebooks/Proyecto_API_de_An%C3%A1lisis_de_Sentimientos_Completo_Portugues_15_Ene.ipynb)
+
+## Índice
+
+* [Título e imagen de portada](#Hackathon-Alura-ONE-SentimentalAPI-E47)
+    * [Stack tecnológico](#Stack)
+    * [Links más importantes](#Links-más-importantes)
+    * [Índice](#Índice)
+    * [Organizadores](#Organizadores)
+* [Datos generales](#Datos-generales)
+    * [Integrantes del Proyecto](#Integrantes-del-Proyecto)
+    * [Estructura del Proyecto](#Estructura-del-Proyecto)
+    * [Herramientas y versiones](#Herramientas-y-versiones)
+    * [Requerimientos](#Requerimientos)
+* [Documentación Frontend](#Front)
+* [Documentación Backend](#Backend)
+    * [Tecnologías](#Tecnologías)
+    * [Configuración del proyecto](#Configuración-del-proyecto)
+    * [Ejecución del proyecto](#Ejecución-del-proyecto)
+    * [Endpoints principales](#Endpoints-principales)
+    * [Consumo de la API](#Consumo-de-la-API)
+* [Documentación Data Science](#DataScience)
+    * [Modelo PORTUGUES](#Modelo-Seleccionado-en-PORTUGUES:-SGDClassifier-como-Regresión-Logística)
+    * [Modelo ESPAÑOL](#Modelo-Seleccionado-en-ESPAÑOL:-SGDClassifier-como-Regresión-Logística)
 
 
 ## Organizadores
 <p style="display: flex; justify-content: space-between;">
   <img src="https://nocountry.tech/one.png" width="20%" />
-  <img src="https://nocountry.tech/nocountry-logo.png" width="20%" />
+  <img src="https://raw.githubusercontent.com/jhoandavidpll/Hackathon-Alura-ONE-SentimentalAPI-E47/refs/heads/main/Frontend/img/alura_latam.png" width="20%" />
   <img src="https://nocountry.tech/images/oracle-logo.webp" width="20%" />
+  <img src="https://nocountry.tech/nocountry-logo.png" width="20%" />
 </p>
 
 # Datos generales
@@ -78,35 +111,7 @@ REPO/
 - textblob
 - requests
 
-# Data Science
-## Modelo Seleccionado en PORTUGUES : SGDClassifier como Regresión Logística 
-
-### Modelo SGD
-![Modelo SGD](https://i.imgur.com/nHfsHRh.png)
-
-### Distribución de negativos y positivos
-![Distribución Positivos y negativos](https://i.imgur.com/SYL6oqZ.png)
-
-### Porcentajes de predicción
-![Porcentaje de Predicción ](https://i.imgur.com/JGKb6lj.png) 
-
-### Falsos positivos y negativos
-![Curva ROC AUC 0.834](https://i.imgur.com/YYHpSqH.png)
-
-
-## Modelo Seleccionado en ESPAÑOL: SGDClassifier como Regresión Logística 
-
-### Modelo SGD
-![Modelo SGD](https://i.imgur.com/pKarVla.png)
-
-### Distribución de negativos y positivos
-![Distribución Positivos y negativos](https://i.imgur.com/ma7pg0u.png)
-
-### Porcentajes de predicción
-![Porcentaje de Predicción ](https://i.imgur.com/foWGLrS.png) 
-
-### Falsos positivos y negativos
-![Curva ROC AUC 0.834](https://i.imgur.com/MYb6tFD.png)
+# Frontend
 
 # Backend 
 
@@ -463,3 +468,33 @@ Ejemplo: /predict/334
 Ejemplo: /predict/352
 
 Estatus respuesta: 204 No content
+
+# Data Science
+## Modelo Seleccionado en PORTUGUES: SGDClassifier como Regresión Logística 
+
+### Modelo SGD
+<img src="https://i.imgur.com/nHfsHRh.png" alt="Modelo SGD" width="300">
+
+### Distribución de negativos y positivos
+<img src="https://i.imgur.com/nHfsHRh.png](https://i.imgur.com/SYL6oqZ.png" alt="Modelo SGD" width="300">
+
+### Porcentajes de predicción
+<img src="https://i.imgur.com/nHfsHRh.png](https://i.imgur.com/JGKb6lj.png" alt="Modelo SGD" width="300">
+
+### Falsos positivos y negativos
+<img src="https://i.imgur.com/YYHpSqH.png" alt="Modelo SGD" width="300">
+
+
+## Modelo Seleccionado en ESPAÑOL: SGDClassifier como Regresión Logística 
+
+### Modelo SGD
+<img src="https://i.imgur.com/pKarVla.png" alt="Modelo SGD" width="300">
+
+### Distribución de negativos y positivos
+<img src="https://i.imgur.com/ma7pg0u.png" alt="Modelo SGD" width="300">
+
+### Porcentajes de predicción
+<img src="https://i.imgur.com/foWGLrS.png" alt="Modelo SGD" width="300">
+
+### Falsos positivos y negativos
+<img src="https://i.imgur.com/MYb6tFD.png" alt="Modelo SGD" width="300">

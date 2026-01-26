@@ -82,7 +82,9 @@ REPO/
 ├── Backend/                 # (Squad Java Spring Boot)
 │   ├── src/                 # Código fuente Java
 │   │    └── main
-│   │       └──java/equipo/_7/SentimentAPIAplication.java  # Programa principal
+│   │       └──java/equipo/_7/SentimentAPIAplication
+│   │                             ├──/java  # Programa principal
+│   │                             └──application.properties # Configuraciones generales
 │   │── pom.xml              # Dependencias Maven
 │   └── compose.yaml         # Contenedor de la base de datos
 │

@@ -14,7 +14,7 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 
 **Proyecto funcional en la nube**
 
-[![BEEsionary](https://img.shields.io/badge/BEEsionary-gray)](http://129.213.21.63:8501/)
+[![BEEsionary](https://img.shields.io/badge/BEEsionary-gray?logo=google)](http://129.213.21.63:8501/)
 
 
 **Repositorio**
@@ -67,11 +67,11 @@ Proyecto de Data Science y Backend sobre una API de Análisis de Sentimientos
 - Mitchel David Poblete Santibañez
 - Andres Felipe Cubillos Hurtado
 - Brandon Omar Ortiz Gutierrez  
-- David Avila  
+- David Abraham Avila Castro  
 - Nydia Naomi Olmos Romero
 - Andrés Huerta Salgado  
 - Cristian Armando Larios Bravo
-- Jeferson Peña
+- Jeferson José Peña Curvelo
 
 
 ## Estructura del Proyecto
